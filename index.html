@@ -1,7 +1,7 @@
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>The NYC Concierge | Manhattan Muse</title>
+<title>The NYC Concierge | Tower Edition</title>
 <meta content="Discover curated NYC date spots and social vibes based on your mood, budget, and neighborhood." name="description"/>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -65,13 +65,6 @@
         .chip-active span, .chip-active p {
             color: white !important;
         }
-        .pulse-match {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: .7; }
-        }
         .nav-link-active {
             color: #6B1D23;
             border-bottom: 2px solid #6B1D23;
@@ -90,147 +83,167 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23887271'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 1.5em;
+        .pulse-match {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .7; }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #dbc0c0; border-radius: 10px; }
+        
+        .chat-slide-over {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(100%);
+        }
+        .chat-slide-over.active {
+            transform: translateX(0);
         }
     </style>
 </head>
 <body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
-<nav class="fixed top-0 w-full z-[60] bg-[#FCF9F5] border-b border-stone-200">
-<div class="flex justify-between items-center h-20 px-10 max-w-7xl mx-auto">
-<div class="font-serif italic font-bold text-2xl text-[#6B1D23] tracking-tight cursor-pointer" onclick="showView('home')">
-                The NYC Concierge
-            </div>
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-[60] bg-[#FCF9F5]/95 backdrop-blur-md border-b border-stone-200">
+<div class="flex justify-between items-center h-20 px-6 md:px-10 max-w-7xl mx-auto">
+<div class="font-serif italic font-bold text-xl md:text-2xl text-[#6B1D23] tracking-tight cursor-pointer" onclick="showView('home')">
+            The NYC Concierge
+        </div>
 <div class="hidden md:flex items-center space-x-8">
 <a class="text-stone-500 hover:text-[#6B1D23] transition-colors text-body-md nav-item home-nav nav-link-active" href="#" onclick="showView('home')">Home</a>
 <a class="text-stone-500 hover:text-[#6B1D23] transition-colors text-body-md" href="#">How It Works</a>
-<a class="text-stone-500 hover:text-[#6B1D23] transition-colors text-body-md nav-item chats-nav flex items-center gap-1" href="#" onclick="showView('chats')">Chats <span class="relative flex items-center justify-center p-1 bg-primary/5 rounded-full ring-2 ring-primary/20"><span class="material-symbols-outlined text-[20px] text-primary">notifications</span><span class="absolute top-0 right-0 w-3 h-3 rounded-full bg-red-600 border-2 border-[#FCF9F5] shadow-sm"></span></span></a>
+<button class="text-stone-500 hover:text-[#6B1D23] transition-colors text-body-md nav-item chats-nav flex items-center gap-1" onclick="toggleChatPanel()">
+                Chats 
+                <span class="relative flex items-center justify-center p-1 bg-primary/5 rounded-full ring-2 ring-primary/20">
+<span class="material-symbols-outlined text-[20px] text-primary">notifications</span>
+<span class="absolute top-0 right-0 w-3 h-3 rounded-full bg-red-600 border-2 border-[#FCF9F5] shadow-sm"></span>
+</span>
+</button>
 </div>
-<button class="bg-primary-container text-white px-6 py-3 rounded-lg font-button hover:opacity-90 transition-all">
-                Plan Now
-            </button>
+<button class="bg-primary-container text-white px-5 py-2.5 rounded-lg font-button hover:opacity-90 transition-all text-sm md:text-base">
+            Plan Now
+        </button>
 </div>
 </nav>
-<main class="pt-20">
+<main class="pt-20 min-h-screen">
 <!-- Home View -->
 <div id="view-home">
 <!-- Hero Section -->
-<section class="relative h-[60vh] md:h-[819px] flex items-center justify-center overflow-hidden">
+<section class="relative h-[65vh] md:h-[800px] flex items-center justify-center overflow-hidden">
 <div class="absolute inset-0 z-0">
-<div class="absolute inset-0 bg-black/40 z-10"></div>
-<img alt="NYC Twilight" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbdxuR2RacPE5BBxYUV21STYzG1WgY1bxhZh8APyVer2S_-JSG9NJCazk9HwK2vRr2iSS3F-hU3OIs0Tk2dbzPlNdASELCa_emXt33jYg1fAS9hohcc_rgTskYh63D9UailPH4a9bphy4Db_l_mpNSWE9e9xfpSTls7kRCsfufdA8X3b_kAis7CXAX_aq0_hm_SAeZ2CrwvSvwNPbPrP8QMD5M6iFnXUFJ-odUsOzdzRRma_uc0UjIO6oAwG9hTR_XDscy7i8ytKM"/>
+<div class="absolute inset-0 bg-black/50 z-10"></div>
+<img alt="NYC Skyline" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWcLj67CkPfZnJAr0hfwlGBCOw3k-QMdJy6YQqL_AG8VLPiCLtj1QVXhJs14K7LWTtNEzkf22HovvE3Oh9eZhjVF_jUyCZVZCljodL4b37AEAuqujmfbvkpKbdDdYpKzJ1XfECXpFD7CVFxbFG8yyf3JwY-AXT1-crVmh-VFsE2qKJ7memeuEDR_qvvwXp2BRCQz14bA0xmJlsBBYdtrQzjtk9WjhKEsjGgScKLm_JV-JaG3WfIy8ohZeXcBCqStpCHBNUuUZ7nKI"/>
 </div>
 <div class="relative z-20 text-center px-6 max-w-4xl mx-auto">
 <span class="font-label-caps text-label-caps text-white/90 mb-4 block uppercase tracking-widest">Urban Discovery Tool</span>
-<h1 class="font-h1 text-4xl md:text-6xl text-white mb-6 leading-tight">What to do in NYC tonight?</h1>
+<h1 class="font-h1 text-4xl md:text-7xl text-white mb-6 leading-tight">What to do in NYC tonight?</h1>
 <p class="font-body-lg text-body-lg text-white/80 mb-10 max-w-2xl mx-auto">Discover curated date spots or hit the most trending parties in the city.</p>
 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-<a class="inline-flex items-center gap-2 bg-background text-primary px-8 py-4 rounded-lg font-button hover:bg-surface-container transition-all shadow-xl" href="#planner">
-                            Start Planning <span class="material-symbols-outlined">arrow_downward</span>
+<a class="inline-flex items-center gap-2 bg-white text-primary px-10 py-4 rounded-xl font-button hover:bg-surface-container transition-all shadow-2xl" href="#planner">
+                        Start Planning <span class="material-symbols-outlined">arrow_downward</span>
 </a>
 </div>
 </div>
 </section>
 <!-- Mode Toggle & Planner Section -->
-<section class="py-12 bg-surface-container-low px-4 md:px-0" id="planner">
+<section class="py-16 bg-surface-container-low px-4 md:px-0" id="planner">
 <div class="max-w-5xl mx-auto">
 <!-- Mode Switcher -->
 <div class="flex justify-center mb-12">
-<div class="bg-white p-1 rounded-xl border border-outline-variant flex shadow-sm">
-<button class="px-6 md:px-8 py-3 rounded-lg font-button text-xs md:text-sm transition-all mode-active" id="mode-date" onclick="switchMainMode('date')">
-                                Date Planner
-                            </button>
-<button class="px-6 md:px-8 py-3 rounded-lg font-button text-xs md:text-sm transition-all text-stone-500 hover:bg-stone-50" id="mode-party" onclick="switchMainMode('party')">
-                                Party Radar
-                            </button>
-<button class="px-6 md:px-8 py-3 rounded-lg font-button text-xs md:text-sm transition-all text-stone-500 hover:bg-stone-50" id="mode-host" onclick="switchMainMode('host')">
-                                Host a Vibe
-                            </button>
+<div class="bg-white p-1.5 rounded-2xl border border-outline-variant flex shadow-xl">
+<button class="px-6 md:px-10 py-3.5 rounded-xl font-button text-xs md:text-sm transition-all mode-active" id="mode-date" onclick="switchMainMode('date')">
+                            Date Planner
+                        </button>
+<button class="px-6 md:px-10 py-3.5 rounded-xl font-button text-xs md:text-sm transition-all text-stone-500 hover:bg-stone-50" id="mode-party" onclick="switchMainMode('party')">
+                            Party Radar
+                        </button>
+<button class="px-6 md:px-10 py-3.5 rounded-xl font-button text-xs md:text-sm transition-all text-stone-500 hover:bg-stone-50" id="mode-host" onclick="switchMainMode('host')">
+                            Host a Vibe
+                        </button>
 </div>
 </div>
 <!-- Main Interaction Card -->
-<div class="bg-white rounded-2xl shadow-sm border border-outline-variant p-8 md:p-12" id="planner-card">
+<div class="bg-white rounded-3xl shadow-sm border border-outline-variant p-8 md:p-16 relative overflow-hidden" id="planner-card">
 <!-- Date Planner Form -->
-<div class="space-y-12" id="planner-form-container">
+<div class="space-y-16" id="planner-form-container">
 <div id="mood-section">
-<h3 class="font-h3 text-h3 mb-6 flex items-center gap-3">
-<span class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center text-sm font-bold">1</span>
+<h3 class="font-h3 text-h3 mb-8 flex items-center gap-4">
+<span class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center text-base font-bold">1</span>
 <span>Select your mood</span>
 </h3>
 <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="mood-grid">
-<button class="mood-btn border border-outline-variant p-4 rounded-xl flex flex-col items-center gap-2 hover:border-primary transition-all" data-mood="Romantic">
-<span class="material-symbols-outlined text-primary">favorite</span>
+<button class="mood-btn border border-outline-variant p-6 rounded-2xl flex flex-col items-center gap-3 hover:border-primary transition-all group" data-mood="Romantic">
+<span class="material-symbols-outlined text-3xl text-primary transition-transform group-hover:scale-110">favorite</span>
 <span class="font-button text-sm">Romantic</span>
 </button>
-<button class="mood-btn border border-outline-variant p-4 rounded-xl flex flex-col items-center gap-2 hover:border-primary transition-all" data-mood="Calm">
-<span class="material-symbols-outlined text-primary">potted_plant</span>
+<button class="mood-btn border border-outline-variant p-6 rounded-2xl flex flex-col items-center gap-3 hover:border-primary transition-all group" data-mood="Calm">
+<span class="material-symbols-outlined text-3xl text-primary transition-transform group-hover:scale-110">potted_plant</span>
 <span class="font-button text-sm">Calm</span>
 </button>
-<button class="mood-btn border border-outline-variant p-4 rounded-xl flex flex-col items-center gap-2 hover:border-primary transition-all" data-mood="Fun">
-<span class="material-symbols-outlined text-primary">celebration</span>
+<button class="mood-btn border border-outline-variant p-6 rounded-2xl flex flex-col items-center gap-3 hover:border-primary transition-all group" data-mood="Fun">
+<span class="material-symbols-outlined text-3xl text-primary transition-transform group-hover:scale-110">celebration</span>
 <span class="font-button text-sm">Fun</span>
 </button>
-<button class="mood-btn border border-outline-variant p-4 rounded-xl flex flex-col items-center gap-2 hover:border-primary transition-all" data-mood="Spontaneous">
-<span class="material-symbols-outlined text-primary">bolt</span>
+<button class="mood-btn border border-outline-variant p-6 rounded-2xl flex flex-col items-center gap-3 hover:border-primary transition-all group" data-mood="Spontaneous">
+<span class="material-symbols-outlined text-3xl text-primary transition-transform group-hover:scale-110">bolt</span>
 <span class="font-button text-sm">Spontaneous</span>
 </button>
-<button class="mood-btn border border-outline-variant p-4 rounded-xl flex flex-col items-center gap-2 hover:border-primary transition-all" data-mood="Scenic">
-<span class="material-symbols-outlined text-primary">landscape</span>
+<button class="mood-btn border border-outline-variant p-6 rounded-2xl flex flex-col items-center gap-3 hover:border-primary transition-all group" data-mood="Scenic">
+<span class="material-symbols-outlined text-3xl text-primary transition-transform group-hover:scale-110">landscape</span>
 <span class="font-button text-sm">Scenic</span>
 </button>
-<button class="mood-btn border border-outline-variant p-4 rounded-xl flex flex-col items-center gap-2 hover:border-primary transition-all" data-mood="Coffee &amp; Dessert">
-<span class="material-symbols-outlined text-primary">icecream</span>
+<button class="mood-btn border border-outline-variant p-6 rounded-2xl flex flex-col items-center gap-3 hover:border-primary transition-all group" data-mood="Coffee &amp; Dessert">
+<span class="material-symbols-outlined text-3xl text-primary transition-transform group-hover:scale-110">icecream</span>
 <span class="font-button text-sm">Coffee &amp; Dessert</span>
 </button>
-<button class="mood-btn border border-outline-variant p-4 rounded-xl flex flex-col items-center gap-2 hover:border-primary transition-all" data-mood="Budget Friendly">
-<span class="material-symbols-outlined text-primary">savings</span>
+<button class="mood-btn border border-outline-variant p-6 rounded-2xl flex flex-col items-center gap-3 hover:border-primary transition-all group" data-mood="Budget Friendly">
+<span class="material-symbols-outlined text-3xl text-primary transition-transform group-hover:scale-110">savings</span>
 <span class="font-button text-sm">Budget Friendly</span>
 </button>
-<button class="mood-btn border border-outline-variant p-4 rounded-xl flex flex-col items-center gap-2 hover:border-primary transition-all" data-mood="Culture Focused">
-<span class="material-symbols-outlined text-primary">museum</span>
+<button class="mood-btn border border-outline-variant p-6 rounded-2xl flex flex-col items-center gap-3 hover:border-primary transition-all group" data-mood="Culture Focused">
+<span class="material-symbols-outlined text-3xl text-primary transition-transform group-hover:scale-110">museum</span>
 <span class="font-button text-sm">Culture Focused</span>
 </button>
 </div>
 </div>
-<div class="grid md:grid-cols-2 gap-12" id="criteria-section">
+<div class="grid md:grid-cols-2 gap-16" id="criteria-section">
 <div id="budget-container">
-<h3 class="font-h3 text-h3 mb-6 flex items-center gap-3">
-<span class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center text-sm font-bold">2</span>
-                                        Budget level
-                                    </h3>
-<div class="flex bg-surface-container p-1 rounded-xl overflow-hidden">
-<button class="budget-btn flex-1 py-3 px-2 flex flex-col items-center gap-0.5 transition-all" data-budget="Budget Under $40">
+<h3 class="font-h3 text-h3 mb-8 flex items-center gap-4">
+<span class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center text-base font-bold">2</span>
+                                    Budget level
+                                </h3>
+<div class="flex bg-surface-container p-1.5 rounded-2xl overflow-hidden shadow-inner">
+<button class="budget-btn flex-1 py-4 px-2 flex flex-col items-center gap-0.5 transition-all rounded-xl" data-budget="Budget Under $40">
 <span class="font-button text-xs">Budget</span>
 <span class="text-[10px] opacity-70">Under $40</span>
 </button>
-<button class="budget-btn flex-1 py-3 px-2 flex flex-col items-center gap-0.5 transition-all" data-budget="Mid $40–$90">
+<button class="budget-btn flex-1 py-4 px-2 flex flex-col items-center gap-0.5 transition-all rounded-xl" data-budget="Mid $40–$90">
 <span class="font-button text-xs">Mid</span>
 <span class="text-[10px] opacity-70">$40–$90</span>
 </button>
-<button class="budget-btn flex-1 py-3 px-2 flex flex-col items-center gap-0.5 transition-all" data-budget="High $90–$160">
+<button class="budget-btn flex-1 py-4 px-2 flex flex-col items-center gap-0.5 transition-all rounded-xl" data-budget="High $90–$160">
 <span class="font-button text-xs">High</span>
 <span class="text-[10px] opacity-70">$90–$160</span>
 </button>
-<button class="budget-btn flex-1 py-3 px-2 flex flex-col items-center gap-0.5 transition-all" data-budget="Premium $160+">
+<button class="budget-btn flex-1 py-4 px-2 flex flex-col items-center gap-0.5 transition-all rounded-xl" data-budget="Premium $160+">
 <span class="font-button text-xs">Premium</span>
 <span class="text-[10px] opacity-70">$160+</span>
 </button>
 </div>
 </div>
 <div id="neighborhood-container">
-<h3 class="font-h3 text-h3 mb-6 flex items-center gap-3">
-<span class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center text-sm font-bold">3</span>
-                                        Neighborhood
-                                    </h3>
+<h3 class="font-h3 text-h3 mb-8 flex items-center gap-4">
+<span class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center text-base font-bold">3</span>
+                                    Neighborhood
+                                </h3>
 <div class="space-y-4">
-<button class="w-full flex items-center justify-center gap-2 py-3 border border-outline text-primary font-button rounded-lg hover:bg-surface transition-all" onclick="getLocation()">
+<button class="w-full flex items-center justify-center gap-3 py-4 border-2 border-primary/20 text-primary font-button rounded-xl hover:bg-primary/5 transition-all" onclick="getLocation()">
 <span class="material-symbols-outlined">my_location</span> Use My Location
-                                        </button>
-<select class="w-full border-outline-variant rounded-lg py-3 px-4 font-body-md focus:border-primary focus:ring-primary appearance-none bg-white" id="neighborhood-select">
+                                    </button>
+<div class="relative">
+<select class="w-full border-outline-variant rounded-xl py-4 px-5 font-body-md focus:border-primary focus:ring-4 focus:ring-primary/10 appearance-none bg-white shadow-sm pr-12" id="neighborhood-select">
 <option value="All Neighborhoods">All Neighborhoods</option>
 <option value="West Village">West Village</option>
 <option value="SoHo">SoHo</option>
@@ -242,40 +255,45 @@
 <option value="Upper West Side">Upper West Side</option>
 <option value="Upper East Side">Upper East Side</option>
 </select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-stone-400">expand_more</span>
 </div>
 </div>
 </div>
-<div class="pt-8 border-t border-outline-variant flex justify-center">
-<button class="w-full md:w-auto bg-primary-container text-white px-12 py-5 rounded-xl font-button text-lg hover:opacity-90 transition-all shadow-lg focus:ring-4 focus:ring-primary/20" id="build-plan-btn" onclick="buildPlan()">
-                                    Build My Plan
-                                </button>
+</div>
+<div class="pt-12 border-t border-outline-variant flex justify-center">
+<button class="w-full md:w-auto min-w-[300px] bg-primary-container text-white px-16 py-6 rounded-2xl font-button text-xl hover:opacity-90 hover:scale-[1.02] transition-all shadow-2xl focus:ring-8 focus:ring-primary/10" id="build-plan-btn" onclick="buildPlan()">
+                                Build My Plan
+                            </button>
 </div>
 </div>
 <!-- Party Radar Content -->
 <div class="hidden text-center py-12" id="party-radar-info">
-<h3 class="font-h3 text-2xl text-primary mb-4">Real-time Party Radar</h3>
-<p class="text-stone-500 max-w-lg mx-auto mb-8">Scan for active events hosted by the NYC community. Join vibes and experience the city's pulse.</p>
-<div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-10 text-left" id="party-radar-grid">
-<!-- Hosted events will appear here -->
+<div class="max-w-2xl mx-auto mb-12">
+<span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4 inline-block">Real-Time Pulse</span>
+<h3 class="font-h3 text-4xl text-primary mb-6">Active NYC Vibes</h3>
+<p class="text-stone-500 text-lg leading-relaxed">Scan for community-hosted events. Join the crowd and experience the city's spontaneous side.</p>
 </div>
-<button class="bg-primary-container text-white px-10 py-4 rounded-xl font-button text-lg hover:opacity-90 transition-all shadow-lg" id="scan-radar-btn" onclick="scanRadar()">
-                                Refresh Radar
-                            </button>
+<div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16 text-left" id="party-radar-grid">
+<!-- Events injected via JS -->
+</div>
+<button class="bg-primary-container text-white px-12 py-5 rounded-2xl font-button text-lg hover:opacity-95 transition-all shadow-xl flex items-center gap-3 mx-auto" onclick="scanRadar()">
+<span class="material-symbols-outlined">refresh</span> Refresh Radar
+                        </button>
 </div>
 <!-- Host Creation Form -->
-<div class="hidden space-y-10" id="host-form-container">
-<div class="border-b border-stone-100 pb-4">
-<h2 class="font-h2 text-2xl text-primary mb-2">Host a New Vibe</h2>
-<p class="text-stone-500 text-sm">Add a new event to the NYC social scene.</p>
+<div class="hidden max-w-3xl mx-auto space-y-12" id="host-form-container">
+<div class="text-center pb-4">
+<h2 class="font-h2 text-4xl text-primary mb-3">Host a New Vibe</h2>
+<p class="text-stone-500">Put your event on the radar for the NYC community.</p>
 </div>
-<form class="grid md:grid-cols-2 gap-x-8 gap-y-6" id="vibe-host-form">
+<form class="grid md:grid-cols-2 gap-8" id="vibe-host-form">
 <div class="col-span-2">
-<label class="block text-xs font-bold uppercase text-stone-400 mb-2">Event Name</label>
-<input class="w-full border-stone-200 rounded-lg p-3 focus:ring-primary focus:border-primary" id="host-name" placeholder="Ex: Midnight Rooftop Jazz" type="text"/>
+<label class="block text-xs font-bold uppercase text-stone-400 mb-2 tracking-widest">Event Name</label>
+<input class="w-full border-stone-200 rounded-xl p-4 focus:ring-4 focus:ring-primary/10 focus:border-primary shadow-sm" id="host-name" placeholder="Ex: Midnight Rooftop Jazz" type="text"/>
 </div>
 <div>
-<label class="block text-xs font-bold uppercase text-stone-400 mb-2">Neighborhood</label>
-<select class="w-full border-stone-200 rounded-lg p-3" id="host-district">
+<label class="block text-xs font-bold uppercase text-stone-400 mb-2 tracking-widest">Neighborhood</label>
+<select class="w-full border-stone-200 rounded-xl p-4 appearance-none bg-white shadow-sm" id="host-district">
 <option value="Lower Manhattan">Lower Manhattan</option>
 <option value="SoHo">SoHo</option>
 <option value="Williamsburg">Williamsburg</option>
@@ -284,59 +302,20 @@
 </select>
 </div>
 <div>
-<label class="block text-xs font-bold uppercase text-stone-400 mb-2">Event Type</label>
-<select class="w-full border-stone-200 rounded-lg p-3" id="host-type">
+<label class="block text-xs font-bold uppercase text-stone-400 mb-2 tracking-widest">Event Type</label>
+<select class="w-full border-stone-200 rounded-xl p-4 appearance-none bg-white shadow-sm" id="host-type">
 <option value="Rooftop">Rooftop</option>
 <option value="Lounge">Lounge</option>
 <option value="Speakeasy">Speakeasy</option>
 <option value="Art Space">Art Space</option>
 </select>
 </div>
-<div>
-<label class="block text-xs font-bold uppercase text-stone-400 mb-2">Capacity Limit</label>
-<input class="w-full border-stone-200 rounded-lg p-3" id="host-capacity" placeholder="Ex: 50" type="number"/>
-</div>
-<div>
-<label class="block text-xs font-bold uppercase text-stone-400 mb-2">Visibility</label>
-<select class="w-full border-stone-200 rounded-lg p-3" id="host-visibility">
-<option value="Public">Public</option>
-<option value="Friends of Friends">Friends of Friends</option>
-<option value="Private Link Only">Private Link Only</option>
-</select>
-</div>
 <div class="col-span-2">
-<label class="block text-xs font-bold uppercase text-stone-400 mb-2">Short Description</label>
-<textarea class="w-full border-stone-200 rounded-lg p-3 h-24" id="host-desc" placeholder="Briefly describe your vibe..."></textarea>
+<label class="block text-xs font-bold uppercase text-stone-400 mb-2 tracking-widest">Description</label>
+<textarea class="w-full border-stone-200 rounded-xl p-4 h-32 focus:ring-4 focus:ring-primary/10 shadow-sm" id="host-desc" placeholder="Briefly describe your vibe..."></textarea>
 </div>
-<div class="col-span-2 mt-4 p-6 bg-stone-50 border border-stone-200 rounded-xl">
-<h4 class="text-sm font-bold text-stone-800 uppercase tracking-wider mb-4 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-lg">verified_user</span>
-        Safety &amp; Compliance
-    </h4>
-<div class="flex flex-col gap-6">
-<div class="flex items-center justify-between">
-<div>
-<p class="text-sm font-bold text-stone-700">Verified Identity Required</p>
-<p class="text-xs text-stone-500">Only allow users with verified IDs to view/join this vibe.</p>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" id="host-verify" type="checkbox"/>
-<div class="w-11 h-6 bg-stone-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-</label>
-</div>
-<div class="flex items-center justify-between">
-<div>
-<p class="text-sm font-bold text-stone-700">Host Approval Required</p>
-<p class="text-xs text-stone-500">Manually approve every join request.</p>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only peer" id="host-approval" type="checkbox"/>
-<div class="w-11 h-6 bg-stone-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-</label>
-</div>
-</div>
-</div><div class="col-span-2 pt-4">
-<button class="w-full bg-primary text-white py-4 rounded-xl font-button shadow-lg hover:opacity-90" onclick="hostVibe()" type="button">Publish Global Vibe</button>
+<div class="col-span-2 pt-6">
+<button class="w-full bg-primary text-white py-5 rounded-2xl font-button text-lg shadow-2xl hover:opacity-95 transition-all transform hover:-translate-y-1" onclick="hostVibe()" type="button">Publish Global Vibe</button>
 </div>
 </form>
 </div>
@@ -344,200 +323,203 @@
 </div>
 </section>
 <!-- Results Area -->
-<section class="hidden py-12 bg-surface-container px-4 md:px-0 scroll-mt-20" id="results-area">
+<section class="hidden py-24 bg-surface-container px-4 md:px-0 scroll-mt-20 border-t border-stone-200" id="results-area">
 <div class="max-w-7xl mx-auto">
-<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-<div>
-<h2 class="font-h2 text-h2 text-primary mb-2" id="results-header">Curated For You</h2>
-<p class="font-body-md text-stone-600" id="results-subtext">Discover the best NYC matches based on your mood and budget.</p>
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-xl">
+<span class="font-label-caps text-primary text-xs tracking-widest block mb-4">Concierge Recommendations</span>
+<h2 class="font-h2 text-5xl text-primary mb-4" id="results-header">Curated For You</h2>
+<p class="font-body-md text-stone-600 text-lg" id="results-subtext">The best Manhattan &amp; Brooklyn matches based on your mood and budget.</p>
 </div>
-<button class="text-primary font-button flex items-center gap-2 hover:underline" onclick="resetFilters()">
+<button class="text-primary font-button flex items-center gap-3 hover:underline text-lg" onclick="resetFilters()">
 <span class="material-symbols-outlined">restart_alt</span> Reset Filters
-                        </button>
+                    </button>
 </div>
-<div class="grid md:grid-cols-3 gap-8" id="results-grid">
-<!-- Cards will be injected here -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="results-grid">
+<!-- Cards injected via JS -->
 </div>
 </div>
 </section>
 </div>
-<!-- Chats View -->
-<div class="hidden max-w-5xl mx-auto py-12 px-4" id="view-chats">
-<div class="flex justify-between items-end mb-8">
-<div>
-<h2 class="font-h2 text-3xl text-primary mb-2">Social Hub</h2>
-<p class="text-stone-500">Matches from check-ins and shared meetups.</p>
-</div>
-</div>
-<div class="bg-white rounded-2xl shadow-sm border border-outline-variant overflow-hidden" id="chat-list-container">
-<div class="p-12 text-center text-stone-400" id="empty-chat-state">
-<span class="material-symbols-outlined text-5xl mb-4">forum</span>
-<p>No active matches yet. Start exploring and check-in at venues to meet people!</p>
-</div>
-<div class="divide-y divide-stone-100" id="chat-items"></div>
-</div>
-</div>
 </main>
 <!-- Footer -->
-<footer class="bg-stone-100 border-t border-stone-200 w-full py-12 mt-20">
-<div class="flex flex-col items-center justify-center space-y-6 px-4">
-<div class="font-serif italic text-lg text-stone-800">The NYC Concierge</div>
-<div class="flex flex-wrap justify-center gap-8">
-<a class="text-stone-500 hover:text-[#6B1D23] transition-all text-sm" href="#">About</a>
-<a class="text-stone-500 hover:text-[#6B1D23] transition-all text-sm" href="#">Press</a>
-<a class="text-stone-500 hover:text-[#6B1D23] transition-all text-sm" href="#">Terms</a>
-<a class="text-stone-500 hover:text-[#6B1D23] transition-all text-sm" href="#">Privacy</a>
+<footer class="bg-stone-100 border-t border-stone-200 w-full py-20 mt-20">
+<div class="flex flex-col items-center justify-center space-y-10 px-6">
+<div class="font-serif italic text-2xl font-bold text-[#6B1D23]">The NYC Concierge</div>
+<div class="flex flex-wrap justify-center gap-12">
+<a class="text-stone-500 hover:text-[#6B1D23] transition-all text-sm font-bold uppercase tracking-widest" href="#">About</a>
+<a class="text-stone-500 hover:text-[#6B1D23] transition-all text-sm font-bold uppercase tracking-widest" href="#">Press</a>
+<a class="text-stone-500 hover:text-[#6B1D23] transition-all text-sm font-bold uppercase tracking-widest" href="#">Terms</a>
+<a class="text-stone-500 hover:text-[#6B1D23] transition-all text-sm font-bold uppercase tracking-widest" href="#">Privacy</a>
 </div>
-<p class="text-sm text-stone-600">© 2024 The NYC Concierge. Designed for urban exploration.</p>
+<p class="text-sm text-stone-400 font-medium">© 2024 The NYC Concierge. A premium urban exploration toolkit.</p>
 </div>
 </footer>
 <!-- Venue Details Modal -->
-<div class="fixed inset-0 z-[100] hidden" id="details-modal">
-<div class="absolute inset-0 bg-stone-900/60 backdrop-blur-sm" onclick="closeModal()"></div>
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl px-4 h-[90vh] overflow-y-auto">
-<div class="bg-white rounded-2xl overflow-hidden shadow-2xl my-8 relative">
-<div class="relative h-64 bg-stone-200">
-<img alt="Venue" class="w-full h-full object-cover opacity-90" id="modal-image" src=""/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-<button class="absolute top-4 right-4 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all z-10" onclick="closeModal()">
+<div class="fixed inset-0 z-[100] hidden overflow-hidden" id="details-modal">
+<div class="absolute inset-0 bg-stone-900/80 backdrop-blur-md" onclick="closeModal()"></div>
+<div class="absolute right-0 top-0 bottom-0 w-full max-w-2xl bg-white shadow-2xl overflow-y-auto transform translate-x-full transition-transform duration-500" id="modal-content">
+<div class="relative h-[400px]">
+<img alt="Venue" class="w-full h-full object-cover" id="modal-image" src=""/>
+<div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/30"></div>
+<button class="absolute top-6 right-6 bg-white/20 hover:bg-white/40 text-white w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-md transition-all z-10" onclick="closeModal()">
 <span class="material-symbols-outlined">close</span>
 </button>
-<div class="absolute bottom-6 left-8 text-white">
-<h3 class="font-h2 text-3xl mb-1" id="modal-name"></h3>
-<p class="font-body-md opacity-90" id="modal-district"></p>
+<div class="absolute bottom-10 left-10 right-10">
+<span class="bg-white/90 text-primary px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-widest mb-3 inline-block" id="modal-neighborhood-tag">Neighborhood</span>
+<h3 class="font-h2 text-5xl mb-2 text-primary" id="modal-name"></h3>
+<p class="font-body-md text-stone-600 text-xl font-medium" id="modal-district"></p>
 </div>
 </div>
-<div class="p-8">
-<div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-6">
-<div class="flex-1 space-y-4">
+<div class="p-10 space-y-12">
 <div class="flex flex-wrap gap-2" id="modal-mood-tags"></div>
-<div class="bg-surface-container p-6 rounded-xl border border-stone-100" id="concierge-panel">
-<!-- Concierge content injected here -->
+<div class="grid md:grid-cols-3 gap-8 border-y border-stone-100 py-10">
+<div class="text-center">
+<p class="text-stone-400 text-xs font-bold uppercase tracking-widest mb-1">Budget</p>
+<p class="font-bold text-primary" id="modal-budget-label"></p>
 </div>
+<div class="text-center border-x border-stone-100">
+<p class="text-stone-400 text-xs font-bold uppercase tracking-widest mb-1">Check-Ins</p>
+<p class="font-bold text-primary" id="modal-checked-count"></p>
 </div>
-<div class="w-full md:w-64 space-y-4">
-<button class="w-full bg-primary text-white px-6 py-4 rounded-xl font-button text-base hover:scale-[1.02] transition-all shadow-lg ring-4 ring-primary/5" id="checkin-btn" onclick="handleCheckIn()">Check-In Now</button>
-<div class="p-4 bg-stone-50 rounded-xl border border-stone-100">
-<div class="flex items-center gap-2 text-[10px] font-bold text-emerald-600 uppercase tracking-widest mb-3">
+<div class="text-center">
+<p class="text-stone-400 text-xs font-bold uppercase tracking-widest mb-1">Active Now</p>
+<p class="font-bold text-emerald-600 flex items-center justify-center gap-1">
 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-<span id="modal-checked-count"></span> Verified Presence
-                            </div>
-<div class="flex items-center -space-x-2" id="profile-bubbles">
+<span id="modal-live-users">12</span>
+</p>
+</div>
+</div>
+<div class="bg-primary/5 p-8 rounded-2xl border border-primary/10" id="concierge-panel">
+<!-- Content injected here -->
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<h4 class="font-h3 text-2xl text-primary">Venue Social</h4>
+<button class="bg-primary text-white px-8 py-3.5 rounded-xl font-button text-sm shadow-xl hover:opacity-90 transition-all" id="checkin-btn" onclick="handleCheckIn()">
+                        Check-In Now
+                    </button>
+</div>
+<div class="flex items-center gap-3 p-4 bg-stone-50 rounded-2xl border border-stone-100 overflow-x-auto" id="profile-bubbles">
 <!-- Profiles injected -->
 </div>
-<button class="w-full mt-4 text-[10px] font-bold text-primary uppercase border border-primary/20 py-2 rounded-lg hover:bg-primary/5 transition-all" onclick="showNearbyUsers()">Meet People Nearby</button>
 </div>
-</div>
-</div>
-<!-- Meetups Section -->
-<div class="space-y-4 border-t border-stone-100 pt-8">
+<div class="space-y-6 pt-12 border-t border-stone-100">
 <div class="flex items-center justify-between">
-<h4 class="font-label-caps text-xs text-stone-400 uppercase tracking-widest">Active Meetups</h4>
-<button class="text-xs font-bold text-primary hover:opacity-80 flex items-center gap-1 bg-primary/10 px-3 py-1.5 rounded-full" onclick="toggleMeetupForm()">+ Propose Meetup</button>
+<h4 class="font-h3 text-2xl text-primary">Active Meetups</h4>
+<button class="text-xs font-bold text-primary hover:opacity-80 flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full" onclick="toggleMeetupForm()">
+<span class="material-symbols-outlined text-base">add</span> Propose Meetup
+                    </button>
 </div>
-<!-- New Meetup Form -->
-<div class="hidden bg-stone-50 border border-stone-200 rounded-xl p-4 space-y-4" id="create-meetup-form">
-<h5 class="text-xs font-bold text-stone-500 uppercase">Propose a Shared Activity</h5>
+<div class="hidden bg-stone-50 border border-stone-200 rounded-2xl p-6 space-y-6 transition-all" id="create-meetup-form">
+<h5 class="text-sm font-bold text-stone-700 uppercase tracking-widest">Propose a Shared Activity</h5>
 <div class="grid grid-cols-2 gap-4">
-<input class="text-sm border-stone-200 rounded-lg p-2 focus:ring-primary" id="meetup-name" placeholder="Your Name" type="text"/>
-<input class="text-sm border-stone-200 rounded-lg p-2 focus:ring-primary" id="meetup-time" type="time"/>
-<select class="text-sm border-stone-200 rounded-lg p-2 focus:ring-primary" id="meetup-objective">
+<input class="text-sm border-stone-200 rounded-xl p-3" id="meetup-name" placeholder="Your Display Name" type="text"/>
+<input class="text-sm border-stone-200 rounded-xl p-3" id="meetup-time" type="time"/>
+<select class="text-sm border-stone-200 rounded-xl p-3" id="meetup-objective">
 <option value="Drinks">Drinks</option>
 <option value="Networking">Networking</option>
 <option value="Group Dinner">Group Dinner</option>
 <option value="Activity">Activity/Game</option>
 </select>
-<select class="text-sm border-stone-200 rounded-lg p-2 focus:ring-primary" id="meetup-policy">
+<select class="text-sm border-stone-200 rounded-xl p-3" id="meetup-policy">
 <option value="Open to All">Open to All</option>
 <option value="Approval Required">Approval Required</option>
 </select>
 </div>
-<div class="flex gap-2">
-<button class="flex-1 bg-primary text-white py-2 rounded-lg text-xs font-button hover:opacity-90" onclick="submitNewMeetup()">Post to Venue</button>
-<button class="px-4 py-2 border border-stone-300 rounded-lg text-xs font-button hover:bg-stone-100" onclick="toggleMeetupForm()">Cancel</button>
+<div class="flex gap-4">
+<button class="flex-1 bg-primary text-white py-3 rounded-xl text-sm font-button hover:opacity-90" onclick="submitNewMeetup()">Post Proposal</button>
+<button class="px-6 py-3 border border-stone-300 rounded-xl text-sm font-button hover:bg-stone-100" onclick="toggleMeetupForm()">Cancel</button>
 </div>
 </div>
-<div class="space-y-3" id="modal-meetups-list"></div>
+<div class="space-y-4" id="modal-meetups-list">
+<!-- Meetups injected here -->
 </div>
 </div>
 </div>
 </div>
 </div>
-<!-- Scripts -->
+<!-- Slide-over Chat Panel -->
+<div class="fixed inset-0 z-[110] hidden pointer-events-none" id="chat-panel-container">
+<div class="absolute inset-0 bg-black/40 pointer-events-auto" onclick="toggleChatPanel()"></div>
+<div class="chat-slide-over absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl pointer-events-auto flex flex-col">
+<div class="p-8 border-b border-stone-100 flex items-center justify-between">
+<div>
+<h3 class="font-h2 text-2xl text-primary mb-1">NYC Social Hub</h3>
+<p class="text-stone-400 text-xs uppercase tracking-widest font-bold">Matches &amp; Meetups</p>
+</div>
+<button class="text-stone-400 hover:text-primary transition-colors" onclick="toggleChatPanel()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4" id="chat-list">
+<div class="text-center py-20 px-8 text-stone-400">
+<span class="material-symbols-outlined text-5xl mb-4">forum</span>
+<p class="text-sm">No active chats yet. Start checking into venues to discover people!</p>
+</div>
+</div>
+<div class="p-6 bg-stone-50 border-t border-stone-100">
+<button class="w-full bg-primary-container text-white py-4 rounded-xl font-button text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">explore</span> Explore Nearby
+            </button>
+</div>
+</div>
+</div>
 <script>
+// Comprehensive Venue Database
 const venueDatabase = [
-  { id: 1, name: "Via Carota", neighborhood: "West Village", budget: "Premium $160+", moods: ["Romantic", "Culture Focused"], type: "Italian restaurant", why: "Iconic West Village dinner spot for a polished, romantic NYC date.", dateIdea: "Book a late dinner, share plates, then walk through the village streets.", checkedIn: 8, meetups: 2, img: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=800" },
-  { id: 2, name: "Buvette", neighborhood: "West Village", budget: "Mid $40–$90", moods: ["Romantic", "Calm", "Coffee & Dessert"], type: "French cafe", why: "Cozy, intimate and perfect for a soft first date or brunch date.", dateIdea: "Meet for coffee, dessert or a relaxed wine-and-small-plates date.", checkedIn: 6, meetups: 1, img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=800" },
-  { id: 3, name: "Sip & Guzzle", neighborhood: "West Village", budget: "High $90–$160", moods: ["Fun", "Spontaneous", "Romantic"], type: "Cocktail bar", why: "High-energy cocktail destination with strong date-night appeal.", dateIdea: "Start with drinks, then let the night turn into a spontaneous bar crawl.", checkedIn: 11, meetups: 3, img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" },
-  { id: 4, name: "Molly’s Cupcakes", neighborhood: "West Village", budget: "Budget Under $40", moods: ["Coffee & Dessert", "Budget Friendly", "Calm"], type: "Dessert cafe", why: "Easy, sweet, low-pressure date option under $40.", dateIdea: "Grab cupcakes and walk toward Washington Square Park.", checkedIn: 4, meetups: 0, img: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&q=80&w=800" },
-  { id: 5, name: "Hudson River Park / Pier 45", neighborhood: "West Village", budget: "Budget Under $40", moods: ["Scenic", "Calm", "Budget Friendly"], type: "Outdoor waterfront", why: "Simple scenic walk with river views, ideal for a calm low-cost date.", dateIdea: "Sunset walk, coffee in hand, then decide where to go next.", checkedIn: 9, meetups: 2, img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800" },
-  { id: 6, name: "Balthazar", neighborhood: "SoHo", budget: "High $90–$160", moods: ["Romantic", "Culture Focused", "Fun"], type: "French brasserie", why: "Classic SoHo brasserie energy with strong date-night atmosphere.", dateIdea: "Dinner after shopping or gallery hopping around SoHo.", checkedIn: 10, meetups: 2, img: "https://images.unsplash.com/photo-1550966841-3ee3ad3aa909?auto=format&fit=crop&q=80&w=800" },
-  { id: 7, name: "Dominique Ansel Bakery", neighborhood: "SoHo", budget: "Budget Under $40", moods: ["Coffee & Dessert", "Budget Friendly", "Spontaneous"], type: "Bakery", why: "Famous dessert stop, easy for casual meetups and sweet dates.", dateIdea: "Pick a pastry, walk through SoHo, and keep the date light.", checkedIn: 7, meetups: 1, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800" },
-  { id: 8, name: "Lure Fishbar", neighborhood: "SoHo", budget: "High $90–$160", moods: ["Romantic", "Fun"], type: "Seafood restaurant", why: "Stylish underground seafood spot with a polished NYC vibe.", dateIdea: "Cocktails and seafood before a late-night walk through SoHo.", checkedIn: 5, meetups: 1, img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=800" },
-  { id: 9, name: "Sadelle’s", neighborhood: "SoHo", budget: "Mid $40–$90", moods: ["Calm", "Culture Focused", "Coffee & Dessert"], type: "Brunch restaurant", why: "Iconic brunch/lunch choice for a polished daytime date.", dateIdea: "Brunch, coffee, and a slow walk through nearby shops.", checkedIn: 8, meetups: 1, img: "https://images.unsplash.com/photo-1493770348161-369560ae357d?auto=format&fit=crop&q=80&w=800" },
-  { id: 10, name: "The Drawing Center", neighborhood: "SoHo", budget: "Budget Under $40", moods: ["Culture Focused", "Calm", "Budget Friendly"], type: "Art museum", why: "Low-cost culture date that works before coffee or dinner.", dateIdea: "See an exhibition, then continue to coffee or dessert nearby.", checkedIn: 3, meetups: 0, img: "https://images.unsplash.com/photo-1518998053502-51dd0c694864?auto=format&fit=crop&q=80&w=800" },
-  { id: 11, name: "Cookshop", neighborhood: "Chelsea", budget: "Mid $40–$90", moods: ["Calm", "Romantic", "Culture Focused"], type: "American restaurant", why: "Reliable Chelsea date spot near galleries and the High Line.", dateIdea: "Dinner after walking the High Line or visiting galleries.", checkedIn: 6, meetups: 1, img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=800" },
-  { id: 12, name: "Bar Snack", neighborhood: "Chelsea", budget: "Mid $40–$90", moods: ["Fun", "Spontaneous"], type: "Cocktail bar", why: "Fun bar energy, good for casual drinks and spontaneous meetups.", dateIdea: "Meet for drinks, snacks, and see if the night continues.", checkedIn: 12, meetups: 3, img: "https://images.unsplash.com/photo-1536935338788-846bb9981813?auto=format&fit=crop&q=80&w=800" },
-  { id: 13, name: "High Line", neighborhood: "Chelsea", budget: "Budget Under $40", moods: ["Scenic", "Budget Friendly", "Calm"], type: "Outdoor walk", why: "Classic scenic NYC walk with easy conversation flow.", dateIdea: "Walk the High Line, then choose a nearby drink or dessert spot.", checkedIn: 15, meetups: 4, img: "https://images.unsplash.com/photo-1473269712320-f24ce5aa6e5d?auto=format&fit=crop&q=80&w=800" },
-  { id: 14, name: "RH Rooftop Restaurant", neighborhood: "Chelsea", budget: "High $90–$160", moods: ["Romantic", "Scenic"], type: "Rooftop restaurant", why: "Upscale rooftop atmosphere for a more impressive date.", dateIdea: "Rooftop dinner, photos, and drinks after.", checkedIn: 9, meetups: 2, img: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800" },
-  { id: 15, name: "Whitney Museum", neighborhood: "Chelsea", budget: "Mid $40–$90", moods: ["Culture Focused", "Scenic", "Calm"], type: "Museum", why: "Culture date with city views and strong conversation starters.", dateIdea: "Visit the museum, then walk toward the Meatpacking District.", checkedIn: 5, meetups: 1, img: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?auto=format&fit=crop&q=80&w=800" },
-  { id: 16, name: "Lilia", neighborhood: "Williamsburg", budget: "High $90–$160", moods: ["Romantic", "Culture Focused"], type: "Italian restaurant", why: "Highly regarded Williamsburg dinner spot for serious date-night energy.", dateIdea: "Dinner reservation, then drinks nearby.", checkedIn: 7, meetups: 1, img: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=800" },
-  { id: 17, name: "L’Industrie Pizzeria", neighborhood: "Williamsburg", budget: "Budget Under $40", moods: ["Budget Friendly", "Spontaneous", "Fun"], type: "Pizza", why: "Casual, popular, low-cost pizza date with strong local energy.", dateIdea: "Grab slices, walk around Williamsburg, keep it casual.", checkedIn: 14, meetups: 3, img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=800" },
-  { id: 18, name: "Bar Blondeau", neighborhood: "Williamsburg", budget: "High $90–$160", moods: ["Scenic", "Romantic", "Fun"], type: "Rooftop bar", why: "Skyline views and rooftop atmosphere make it ideal for a scenic date.", dateIdea: "Sunset cocktails with Manhattan views.", checkedIn: 13, meetups: 4, img: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800" },
-  { id: 19, name: "Kellogg’s Diner", neighborhood: "Williamsburg", budget: "Mid $40–$90", moods: ["Spontaneous", "Budget Friendly", "Fun"], type: "Diner", why: "Casual Williamsburg institution for low-pressure food dates.", dateIdea: "Late dinner or spontaneous comfort-food meetup.", checkedIn: 6, meetups: 1, img: "https://images.unsplash.com/photo-1521017432531-fbd92d744264?auto=format&fit=crop&q=80&w=800" },
-  { id: 20, name: "Brooklyn Bowl", neighborhood: "Williamsburg", budget: "Mid $40–$90", moods: ["Fun", "Spontaneous"], type: "Bowling / music venue", why: "Activity-based date that avoids awkward silence.", dateIdea: "Bowling, live music, food and group meetup option.", checkedIn: 16, meetups: 5, img: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&q=80&w=800" },
-  { id: 21, name: "The River Café", neighborhood: "DUMBO", budget: "Premium $160+", moods: ["Romantic", "Scenic"], type: "Fine dining", why: "Classic waterfront romantic dinner with Manhattan skyline views.", dateIdea: "Premium dinner date with the best view in DUMBO.", checkedIn: 5, meetups: 1, img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800" },
-  { id: 22, name: "Time Out Market New York", neighborhood: "DUMBO", budget: "Mid $40–$90", moods: ["Fun", "Spontaneous", "Scenic"], type: "Food hall", why: "Flexible food hall with rooftop views and easy group energy.", dateIdea: "Pick different food, go upstairs for views, then check the radar.", checkedIn: 19, meetups: 6, img: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=800" },
-  { id: 23, name: "Juliana’s Pizza", neighborhood: "DUMBO", budget: "Mid $40–$90", moods: ["Budget Friendly", "Fun", "Spontaneous"], type: "Pizza", why: "Popular pizza date near the waterfront.", dateIdea: "Pizza first, Brooklyn Bridge Park walk after.", checkedIn: 11, meetups: 2, img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=800" },
-  { id: 24, name: "Brooklyn Bridge Park", neighborhood: "DUMBO", budget: "Budget Under $40", moods: ["Scenic", "Calm", "Budget Friendly"], type: "Outdoor waterfront", why: "One of the easiest scenic date routes in NYC.", dateIdea: "Walk by the water, take skyline photos, then grab dessert.", checkedIn: 20, meetups: 4, img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800" },
-  { id: 25, name: "Jacques Torres Chocolate", neighborhood: "DUMBO", budget: "Budget Under $40", moods: ["Coffee & Dessert", "Budget Friendly", "Calm"], type: "Chocolate / dessert", why: "Simple sweet stop before or after a waterfront walk.", dateIdea: "Hot chocolate and a slow DUMBO walk.", checkedIn: 6, meetups: 1, img: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=800" },
-  { id: 26, name: "The Dead Rabbit", neighborhood: "Lower Manhattan", budget: "Mid $40–$90", moods: ["Fun", "Culture Focused", "Spontaneous"], type: "Cocktail bar", why: "Iconic downtown cocktail bar with strong social energy.", dateIdea: "Drinks first, then walk toward the Seaport or Stone Street.", checkedIn: 12, meetups: 3, img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" },
-  { id: 27, name: "Crown Shy", neighborhood: "Lower Manhattan", budget: "High $90–$160", moods: ["Romantic", "Culture Focused"], type: "Restaurant", why: "Polished downtown dinner spot for a high-quality date night.", dateIdea: "Dinner in FiDi, then drinks nearby.", checkedIn: 7, meetups: 1, img: "https://images.unsplash.com/photo-1550966841-3ee3ad3aa909?auto=format&fit=crop&q=80&w=800" },
-  { id: 28, name: "Manhatta", neighborhood: "Lower Manhattan", budget: "Premium $160+", moods: ["Romantic", "Scenic"], type: "Fine dining / skyline view", why: "Premium skyline dinner with major wow factor.", dateIdea: "Dress-up dinner with panoramic city views.", checkedIn: 8, meetups: 2, img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800" },
-  { id: 29, name: "Stone Street", neighborhood: "Lower Manhattan", budget: "Budget Under $40", moods: ["Fun", "Budget Friendly", "Spontaneous"], type: "Outdoor bar street", why: "Easy casual social energy with multiple bars and patios.", dateIdea: "Meet for one drink, then decide where the night goes.", checkedIn: 18, meetups: 5, img: "https://images.unsplash.com/photo-1536935338788-846bb9981813?auto=format&fit=crop&q=80&w=800" },
-  { id: 30, name: "Seaport / Pier 17", neighborhood: "Lower Manhattan", budget: "Budget Under $40", moods: ["Scenic", "Calm", "Spontaneous"], type: "Waterfront walk", why: "Good for low-cost scenic walks and casual first dates.", dateIdea: "Walk the waterfront, check events, then grab casual food.", checkedIn: 14, meetups: 3, img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800" },
-  { id: 31, name: "Bryant Park", neighborhood: "Midtown", budget: "Budget Under $40", moods: ["Calm", "Budget Friendly", "Scenic"], type: "Park", why: "Central, easy, low-cost meetup location.", dateIdea: "Coffee walk, sit in the park, then decide dinner nearby.", checkedIn: 17, meetups: 4, img: "https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?auto=format&fit=crop&q=80&w=800" },
-  { id: 32, name: "The Campbell", neighborhood: "Midtown", budget: "High $90–$160", moods: ["Romantic", "Culture Focused"], type: "Cocktail bar", why: "Classic Grand Central cocktail atmosphere for a stylish date.", dateIdea: "Meet inside Grand Central, have cocktails, then walk Midtown.", checkedIn: 9, meetups: 2, img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" },
-  { id: 33, name: "SUMMIT One Vanderbilt", neighborhood: "Midtown", budget: "High $90–$160", moods: ["Scenic", "Spontaneous", "Fun"], type: "Observation deck", why: "High-impact visual date experience with skyline energy.", dateIdea: "Observation deck first, drinks after.", checkedIn: 13, meetups: 3, img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800" },
-  { id: 34, name: "Le Bernardin", neighborhood: "Midtown", budget: "Premium $160+", moods: ["Romantic", "Culture Focused"], type: "Fine dining", why: "Premium serious-date restaurant for special occasions.", dateIdea: "Formal dinner for anniversary or high-intent date night.", checkedIn: 4, meetups: 0, img: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=800" },
-  { id: 35, name: "UrbanSpace Vanderbilt", neighborhood: "Midtown", budget: "Budget Under $40", moods: ["Budget Friendly", "Spontaneous", "Fun"], type: "Food hall", why: "Fast, flexible, casual food option near Grand Central.", dateIdea: "Pick food separately, sit casually, then walk to Bryant Park.", checkedIn: 10, meetups: 2, img: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=800" },
-  { id: 36, name: "Tavern on the Green", neighborhood: "Upper West Side", budget: "High $90–$160", moods: ["Romantic", "Scenic", "Culture Focused"], type: "Restaurant", why: "Classic Central Park date setting.", dateIdea: "Dinner near Central Park followed by a calm walk.", checkedIn: 7, meetups: 1, img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800" },
-  { id: 37, name: "Levain Bakery", neighborhood: "Upper West Side", budget: "Budget Under $40", moods: ["Coffee & Dessert", "Budget Friendly", "Spontaneous"], type: "Bakery", why: "Famous cookie stop for a simple sweet date.", dateIdea: "Cookies first, walk toward Central Park or Riverside Park.", checkedIn: 12, meetups: 2, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800" },
-  { id: 38, name: "Lincoln Center", neighborhood: "Upper West Side", budget: "Mid $40–$90", moods: ["Culture Focused", "Romantic", "Calm"], type: "Performing arts / plaza", why: "Culture-led date area with strong evening atmosphere.", dateIdea: "Show, plaza walk, then dessert nearby.", checkedIn: 9, meetups: 2, img: "https://images.unsplash.com/photo-1518998053502-51dd0c694864?auto=format&fit=crop&q=80&w=800" },
-  { id: 39, name: "Riverside Park", neighborhood: "Upper West Side", budget: "Budget Under $40", moods: ["Scenic", "Calm", "Budget Friendly"], type: "Park / waterfront", why: "Relaxed local scenic walk away from tourist crowds.", dateIdea: "Sunset walk by the Hudson, then casual dinner nearby.", checkedIn: 8, meetups: 1, img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800" },
-  { id: 40, name: "Jacob’s Pickles", neighborhood: "Upper West Side", budget: "Mid $40–$90", moods: ["Fun", "Spontaneous", "Budget Friendly"], type: "Comfort food", why: "Casual, lively and good for an easy food date.", dateIdea: "Comfort food dinner with a fun, relaxed vibe.", checkedIn: 11, meetups: 3, img: "https://images.unsplash.com/photo-1521017432531-fbd92d744264?auto=format&fit=crop&q=80&w=800" },
-  { id: 41, name: "Bemelmans Bar", neighborhood: "Upper East Side", budget: "High $90–$160", moods: ["Romantic", "Culture Focused"], type: "Classic cocktail bar", why: "Elegant, old-New-York atmosphere for a classy romantic date.", dateIdea: "Dress up for cocktails and live piano energy.", checkedIn: 8, meetups: 1, img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" },
-  { id: 42, name: "The Met Museum", neighborhood: "Upper East Side", budget: "Mid $40–$90", moods: ["Culture Focused", "Calm", "Romantic"], type: "Museum", why: "Perfect culture-first date with endless conversation starters.", dateIdea: "Pick one gallery, then coffee or dinner after.", checkedIn: 15, meetups: 3, img: "https://images.unsplash.com/photo-1518998053502-51dd0c694864?auto=format&fit=crop&q=80&w=800" },
-  { id: 43, name: "Central Park Conservatory Garden", neighborhood: "Upper East Side", budget: "Budget Under $40", moods: ["Scenic", "Calm", "Budget Friendly"], type: "Garden", why: "Quiet scenic walk for low-cost romantic dates.", dateIdea: "Walk the garden, take photos, then get coffee nearby.", checkedIn: 7, meetups: 1, img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800" },
-  { id: 44, name: "Café Sabarsky", neighborhood: "Upper East Side", budget: "Mid $40–$90", moods: ["Coffee & Dessert", "Culture Focused", "Calm"], type: "Cafe", why: "Museum cafe energy, great for coffee and dessert after art.", dateIdea: "Neue Galerie visit followed by coffee and cake.", checkedIn: 5, meetups: 1, img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=800" },
-  { id: 45, name: "Daniel", neighborhood: "Upper East Side", budget: "Premium $160+", moods: ["Romantic", "Culture Focused"], type: "Fine dining", why: "Premium serious-date destination for special occasions.", dateIdea: "Formal dinner date with luxury service and classic NYC feel.", checkedIn: 4, meetups: 0, img: "https://images.unsplash.com/photo-</script><script>
+    { id: 1, name: "Via Carota", neighborhood: "West Village", budget: "Premium $160+", moods: ["Romantic", "Culture Focused"], type: "Italian Restaurant", why: "Iconic West Village dinner spot for a polished, romantic NYC date.", dateIdea: "Book a late dinner, share plates, then walk through the quiet cobblestone streets.", checkedIn: 48, meetups: 3, img: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=800" },
+    { id: 2, name: "Buvette", neighborhood: "West Village", budget: "Mid $40–$90", moods: ["Romantic", "Calm", "Coffee & Dessert"], type: "French Cafe", why: "Cozy, intimate and perfect for a soft first date or brunch.", dateIdea: "Meet for mid-day coffee and tartines; walk the side streets after.", checkedIn: 32, meetups: 1, img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=800" },
+    { id: 3, name: "Balthazar", neighborhood: "SoHo", budget: "High $90–$160", moods: ["Romantic", "Culture Focused", "Fun"], type: "French Brasserie", why: "Classic SoHo brasserie energy with a bustling, timeless atmosphere.", dateIdea: "Brunch before a day of gallery hopping in lower Manhattan.", checkedIn: 65, meetups: 4, img: "https://images.unsplash.com/photo-1550966841-3ee3ad3aa909?auto=format&fit=crop&q=80&w=800" },
+    { id: 4, name: "Lilia", neighborhood: "Williamsburg", budget: "High $90–$160", moods: ["Romantic", "Culture Focused"], type: "Italian Restaurant", why: "Acclaimed pasta destination in the heart of Williamsburg.", dateIdea: "Secure a difficult reservation for an anniversary or high-impact date.", checkedIn: 54, meetups: 2, img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=800" },
+    { id: 5, name: "Manhatta", neighborhood: "Lower Manhattan", budget: "Premium $160+", moods: ["Romantic", "Scenic"], type: "Fine Dining", why: "60th-floor views offering a breathtaking panoramic look at the city.", dateIdea: "Sunset cocktails followed by a multi-course tasting menu.", checkedIn: 29, meetups: 1, img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800" },
+    { id: 6, name: "The Dead Rabbit", neighborhood: "Lower Manhattan", budget: "Mid $40–$90", moods: ["Fun", "Spontaneous"], type: "Cocktail Bar", why: "World-class cocktails in a historic, multi-story tavern setting.", dateIdea: "Cocktails in the parlor before finding a late-night bite downtown.", checkedIn: 88, meetups: 6, img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" },
+    { id: 7, name: "High Line", neighborhood: "Chelsea", budget: "Budget Under $40", moods: ["Scenic", "Calm", "Budget Friendly"], type: "Outdoor Walk", why: "An elevated park with modern art and stunning river views.", dateIdea: "Afternoon walk followed by snacks at Chelsea Market.", checkedIn: 210, meetups: 8, img: "https://images.unsplash.com/photo-1473269712320-f24ce5aa6e5d?auto=format&fit=crop&q=80&w=800" },
+    { id: 8, name: "The River Café", neighborhood: "DUMBO", budget: "Premium $160+", moods: ["Romantic", "Scenic"], type: "Fine Dining", why: "Legendary waterfront spot with the most iconic view of Manhattan.", dateIdea: "The ultimate proposal or high-stakes anniversary dinner.", checkedIn: 18, meetups: 0, img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800" },
+    { id: 9, name: "Bemelmans Bar", neighborhood: "Upper East Side", budget: "High $90–$160", moods: ["Romantic", "Culture Focused"], type: "Jazz Bar", why: "Classic NYC luxury with hand-painted murals and live piano.", dateIdea: "Dress up for sophisticated cocktails and live jazz.", checkedIn: 41, meetups: 2, img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" },
+    { id: 10, name: "Levain Bakery", neighborhood: "Upper West Side", budget: "Budget Under $40", moods: ["Coffee & Dessert", "Budget Friendly"], type: "Bakery", why: "NYC's most famous thick cookies, perfect for a casual sweet treat.", dateIdea: "Grab cookies and coffee for a stroll through Central Park.", checkedIn: 120, meetups: 1, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800" },
+    { id: 11, name: "Summit One Vanderbilt", neighborhood: "Midtown", budget: "High $90–$160", moods: ["Scenic", "Fun", "Spontaneous"], type: "Observation Deck", why: "Immersive mirrored art installations and epic Midtown views.", dateIdea: "Explore the glass rooms at dusk for the best light effects.", checkedIn: 154, meetups: 5, img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800" },
+    { id: 12, name: "Dominique Ansel Bakery", neighborhood: "SoHo", budget: "Budget Under $40", moods: ["Coffee & Dessert", "Spontaneous"], type: "Bakery", why: "Home of the Cronut and other whimsical, world-class pastries.", dateIdea: "Early morning pastry run followed by a SoHo shopping crawl.", checkedIn: 95, meetups: 2, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800" },
+];
+
 let selectedMood = null;
 let selectedBudget = null;
 let userEvents = [];
 
-// Initialize UI Handlers
-document.querySelectorAll('.mood-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('chip-active'));
-        btn.classList.add('chip-active');
-        selectedMood = btn.dataset.mood;
-    });
+// Initialize Page Logic
+document.addEventListener('DOMContentLoaded', () => {
+    initMoodBtns();
+    initBudgetBtns();
 });
 
-document.querySelectorAll('.budget-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.budget-btn').forEach(b => b.classList.remove('chip-active'));
-        btn.classList.add('chip-active');
-        selectedBudget = btn.dataset.budget;
+function initMoodBtns() {
+    document.querySelectorAll('.mood-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('chip-active'));
+            btn.classList.add('chip-active');
+            selectedMood = btn.dataset.mood;
+        });
     });
-});
+}
+
+function initBudgetBtns() {
+    document.querySelectorAll('.budget-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.budget-btn').forEach(b => b.classList.remove('chip-active'));
+            btn.classList.add('chip-active');
+            selectedBudget = btn.dataset.budget;
+        });
+    });
+}
 
 function switchMainMode(mode) {
     const modes = ['date', 'party', 'host'];
     modes.forEach(m => {
-        document.getElementById(`mode-${m}`).classList.remove('mode-active');
-        document.getElementById(`mode-${m}`).classList.add('text-stone-500');
+        const btn = document.getElementById(`mode-${m}`);
+        btn.classList.remove('mode-active');
+        btn.classList.add('text-stone-500');
     });
+    
     document.getElementById(`mode-${mode}`).classList.add('mode-active');
     document.getElementById(`mode-${mode}`).classList.remove('text-stone-500');
 
@@ -551,48 +533,73 @@ function switchMainMode(mode) {
 function buildPlan() {
     const neighborhood = document.getElementById('neighborhood-select').value;
     
+    // Core filtering logic
     let results = venueDatabase.filter(v => {
-        const matchNB = neighborhood === 'All Neighborhoods' || v.neighborhood === neighborhood;
-        const matchMood = !selectedMood || v.moods.includes(selectedMood);
-        const matchBudget = !selectedBudget || v.budget === selectedBudget;
-        return matchNB && matchMood && matchBudget;
+        const nbMatch = neighborhood === 'All Neighborhoods' || v.neighborhood === neighborhood;
+        const moodMatch = !selectedMood || v.moods.includes(selectedMood);
+        const budgetMatch = !selectedBudget || v.budget === selectedBudget;
+        return nbMatch && moodMatch && budgetMatch;
     });
 
-    // Smart Fallback
-    if (results.length === 0 && selectedMood) {
+    // Fallback: If no strict matches, broaden search but keep neighborhood priority
+    if (results.length === 0) {
         results = venueDatabase.filter(v => 
             (neighborhood === 'All Neighborhoods' || v.neighborhood === neighborhood) && 
-            v.moods.includes(selectedMood)
-        );
+            (!selectedMood || v.moods.includes(selectedMood))
+        ).slice(0, 3);
     }
 
     renderResults(results);
-    document.getElementById('results-area').classList.remove('hidden');
-    document.getElementById('results-area').scrollIntoView({ behavior: 'smooth' });
+    const resultsArea = document.getElementById('results-area');
+    resultsArea.classList.remove('hidden');
+    resultsArea.scrollIntoView({ behavior: 'smooth' });
 }
 
 function renderResults(venues) {
     const grid = document.getElementById('results-grid');
-    grid.innerHTML = venues.map(v => `
-        <div class="bg-white rounded-2xl shadow-sm border border-outline-variant overflow-hidden venue-card-reveal hover:shadow-md transition-all group">
-            <div class="relative h-48 overflow-hidden">
-                <img src="${v.img}" alt="${v.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                <div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">${v.neighborhood}</div>
+    if (venues.length === 0) {
+        grid.innerHTML = `
+            <div class="col-span-full py-20 text-center bg-white rounded-3xl border border-dashed border-stone-200">
+                <p class="text-stone-400">No specific matches for that criteria tonight. Try adjusting filters.</p>
             </div>
-            <div class="p-6">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-h3 text-xl">${v.name}</h3>
-                    <span class="text-xs font-bold text-primary">${v.budget.split(' ')[0]}</span>
+        `;
+        return;
+    }
+
+    grid.innerHTML = venues.map(v => `
+        <div class="bg-white rounded-3xl shadow-sm border border-outline-variant overflow-hidden venue-card-reveal hover:shadow-2xl transition-all group cursor-pointer" onclick="openModal(${v.id})">
+            <div class="relative h-60 overflow-hidden">
+                <img src="${v.img}" alt="${v.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">${v.neighborhood}</div>
+                <div class="absolute bottom-4 left-4 text-white">
+                    <p class="text-[10px] font-bold uppercase tracking-widest opacity-80">${v.type}</p>
+                    <h3 class="font-h3 text-2xl">${v.name}</h3>
                 </div>
-                <div class="flex flex-wrap gap-1 mb-4">
-                    ${v.moods.map(m => `<span class="text-[10px] bg-surface-container px-2 py-0.5 rounded-full text-stone-500">${m}</span>`).join('')}
+            </div>
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex flex-wrap gap-1">
+                        ${v.moods.map(m => `<span class="text-[10px] bg-stone-50 border border-stone-100 px-2 py-0.5 rounded text-stone-500 uppercase font-bold">${m}</span>`).join('')}
+                    </div>
+                    <span class="text-xs font-bold text-primary px-2 py-1 bg-primary/5 rounded">${v.budget.split(' ')[0]}</span>
                 </div>
-                <p class="text-sm text-stone-600 mb-4 line-clamp-2">${v.why}</p>
-                <div class="flex items-center gap-4 text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-6">
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">person</span> ${v.checkedIn} Checked-in</span>
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">groups</span> ${v.meetups} Meetups</span>
+                <p class="text-sm text-stone-600 mb-6 leading-relaxed line-clamp-3">
+                    <span class="font-bold text-primary">Why:</span> ${v.why}
+                </p>
+                <div class="p-4 bg-stone-50 rounded-xl mb-6 italic text-xs text-stone-500">
+                    "${v.dateIdea}"
                 </div>
-                <button onclick="openModal(${v.id})" class="w-full py-3 border border-primary text-primary font-button rounded-lg hover:bg-primary hover:text-white transition-all">View Details</button>
+                <div class="flex items-center justify-between pt-6 border-t border-stone-50 text-[10px] font-bold text-stone-400 uppercase tracking-widest">
+                    <div class="flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-sm text-primary">person_check</span>
+                        ${v.checkedIn} Checked-in
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-sm text-primary">groups</span>
+                        ${v.meetups} Meetups
+                    </div>
+                </div>
             </div>
         </div>
     `).join('');
@@ -603,70 +610,193 @@ function openModal(id) {
     if(!v) return;
     
     document.getElementById('modal-name').innerText = v.name;
-    document.getElementById('modal-district').innerText = v.neighborhood + ' • ' + v.type;
+    document.getElementById('modal-district').innerText = `${v.neighborhood} • ${v.type}`;
+    document.getElementById('modal-neighborhood-tag').innerText = v.neighborhood;
     document.getElementById('modal-image').src = v.img;
     document.getElementById('modal-checked-count').innerText = v.checkedIn;
+    document.getElementById('modal-budget-label').innerText = v.budget;
     
-    document.getElementById('modal-mood-tags').innerHTML = v.moods.map(m => `<span class="bg-primary/5 text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase">${m}</span>`).join('');
+    document.getElementById('modal-mood-tags').innerHTML = v.moods.map(m => `
+        <span class="bg-primary/5 text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest border border-primary/10">${m}</span>
+    `).join('');
     
     document.getElementById('concierge-panel').innerHTML = `
-        <h4 class="font-bold text-primary mb-2">Concierge Note</h4>
-        <p class="text-sm text-stone-600 mb-4">${v.why}</p>
-        <h4 class="font-bold text-primary mb-2">Date Idea</h4>
-        <p class="text-sm text-stone-600 italic">"${v.dateIdea}"</p>
+        <div class="flex gap-4">
+            <span class="material-symbols-outlined text-primary text-3xl">verified_user</span>
+            <div>
+                <h4 class="font-bold text-primary mb-1 uppercase text-xs tracking-widest">Concierge Strategy</h4>
+                <p class="text-sm text-stone-600 mb-4 leading-relaxed">${v.why}</p>
+                <h4 class="font-bold text-primary mb-1 uppercase text-xs tracking-widest">Pro Date Idea</h4>
+                <p class="text-sm text-primary/80 italic">"${v.dateIdea}"</p>
+            </div>
+        </div>
     `;
+
+    renderProfiles();
+    renderMeetups();
     
-    document.getElementById('details-modal').classList.remove('hidden');
+    const modal = document.getElementById('details-modal');
+    const content = document.getElementById('modal-content');
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+        content.classList.remove('translate-x-full');
+    }, 10);
 }
 
 function closeModal() {
-    document.getElementById('details-modal').classList.add('hidden');
+    const content = document.getElementById('modal-content');
+    content.classList.add('translate-x-full');
+    setTimeout(() => {
+        document.getElementById('details-modal').classList.add('hidden');
+    }, 500);
+}
+
+function handleCheckIn() {
+    const btn = document.getElementById('checkin-btn');
+    const countEl = document.getElementById('modal-checked-count');
+    const currentCount = parseInt(countEl.innerText);
+    
+    if(btn.innerText === "Checked In ✓") return;
+    
+    btn.innerText = "Checked In ✓";
+    btn.classList.replace('bg-primary', 'bg-emerald-600');
+    countEl.innerText = currentCount + 1;
+    
+    // Add toast or notification logic if needed
+    alert('You are now checked in! Other users can see you are here.');
+}
+
+function toggleMeetupForm() {
+    const form = document.getElementById('create-meetup-form');
+    form.classList.toggle('hidden');
+}
+
+function submitNewMeetup() {
+    const name = document.getElementById('meetup-name').value;
+    const time = document.getElementById('meetup-time').value;
+    const objective = document.getElementById('meetup-objective').value;
+    
+    if(!name || !time) return alert('Please fill in your name and time.');
+    
+    const list = document.getElementById('modal-meetups-list');
+    const newItem = document.createElement('div');
+    newItem.className = "bg-white border border-stone-100 p-5 rounded-2xl flex items-center justify-between shadow-sm hover:shadow-md transition-all";
+    newItem.innerHTML = `
+        <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                ${name[0]}
+            </div>
+            <div>
+                <p class="text-sm font-bold text-stone-800">${name} <span class="text-[10px] font-normal text-stone-400 uppercase tracking-widest ml-2">• ${objective}</span></p>
+                <p class="text-xs text-stone-500">Proposed for ${time}</p>
+            </div>
+        </div>
+        <button class="bg-primary/5 text-primary text-[10px] font-bold px-4 py-2 rounded-lg uppercase hover:bg-primary/10">Join</button>
+    `;
+    list.prepend(newItem);
+    toggleMeetupForm();
+}
+
+function toggleChatPanel() {
+    const panel = document.getElementById('chat-panel-container');
+    const slide = panel.querySelector('.chat-slide-over');
+    
+    if(panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        setTimeout(() => slide.classList.add('active'), 10);
+    } else {
+        slide.classList.remove('active');
+        setTimeout(() => panel.classList.add('hidden'), 400);
+    }
 }
 
 function hostVibe() {
     const name = document.getElementById('host-name').value;
     const district = document.getElementById('host-district').value;
-    const type = document.getElementById('host-type').value;
     const desc = document.getElementById('host-desc').value;
     
     if(!name) return alert('Please enter an event name');
     
-    userEvents.push({ name, district, type, desc, active: true });
-    alert('Your vibe is now live on the Party Radar!');
+    userEvents.push({ name, district, desc, active: true });
+    alert('Vibe successfully broadcast to the NYC social graph.');
     switchMainMode('party');
 }
 
 function scanRadar() {
     const radarGrid = document.getElementById('party-radar-grid');
-    const allEvents = [
-        { name: "Chelsea Loft Party", district: "Chelsea", type: "Lounge", desc: "Late night deep house and cocktails.", active: true },
-        ...userEvents
+    const defaultEvents = [
+        { name: "Chelsea Loft Jazz", district: "Chelsea", type: "Speakeasy", desc: "Live session, limited capacity. DM for address.", active: true },
+        { name: "Williamsburg Underground", district: "Williamsburg", type: "Lounge", desc: "Deep tech house and local spirits.", active: true }
     ];
     
+    const allEvents = [...defaultEvents, ...userEvents];
+    
     radarGrid.innerHTML = allEvents.map(e => `
-        <div class="bg-white p-6 rounded-2xl border border-primary/10 shadow-sm pulse-match">
-            <div class="flex justify-between items-start mb-4">
+        <div class="bg-white p-8 rounded-3xl border border-primary/10 shadow-lg pulse-match group">
+            <div class="flex justify-between items-start mb-6">
                 <div>
-                    <span class="text-[10px] font-bold text-primary uppercase">LIVE • ${e.district}</span>
-                    <h4 class="font-h3 text-lg mt-1">${e.name}</h4>
+                    <span class="text-[10px] font-bold text-primary uppercase tracking-widest bg-primary/5 px-3 py-1 rounded-full mb-3 inline-block">LIVE • ${e.district}</span>
+                    <h4 class="font-h3 text-2xl mt-2 group-hover:text-primary transition-colors">${e.name}</h4>
                 </div>
-                <span class="material-symbols-outlined text-primary">sensors</span>
+                <span class="material-symbols-outlined text-primary text-3xl">sensors</span>
             </div>
-            <p class="text-sm text-stone-500 mb-6">${e.desc}</p>
-            <button class="w-full py-2 bg-primary/5 text-primary text-xs font-bold rounded-lg uppercase tracking-widest hover:bg-primary/10">Request Access</button>
+            <p class="text-sm text-stone-500 leading-relaxed mb-8">${e.desc}</p>
+            <div class="flex items-center justify-between">
+                <div class="flex -space-x-2">
+                    <div class="w-8 h-8 rounded-full border-2 border-white bg-stone-200"></div>
+                    <div class="w-8 h-8 rounded-full border-2 border-white bg-stone-300"></div>
+                    <div class="w-8 h-8 rounded-full border-2 border-white bg-stone-400"></div>
+                </div>
+                <button class="bg-primary text-white px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest hover:opacity-90">Request Pass</button>
+            </div>
         </div>
     `).join('');
 }
 
-function showView(view) {
-    document.getElementById('view-home').classList.toggle('hidden', view !== 'home');
-    document.getElementById('view-chats').classList.toggle('hidden', view !== 'chats');
-    
-    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('nav-link-active'));
-    document.querySelector(`.${view}-nav`).classList.add('nav-link-active');
+function renderProfiles() {
+    const p = document.getElementById('profile-bubbles');
+    p.innerHTML = Array(6).fill(0).map(() => `
+        <div class="w-12 h-12 rounded-full border-2 border-white shadow-sm flex-shrink-0 overflow-hidden bg-stone-100">
+            <img src="https://i.pravatar.cc/150?u=${Math.random()}" class="w-full h-full object-cover">
+        </div>
+    `).join('') + `<div class="w-12 h-12 rounded-full border-2 border-white bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-400 flex-shrink-0">+8</div>`;
 }
 
-function toggleMeetupForm() {
-    document.getElementById('create-meetup-form').classList.toggle('hidden');
+function renderMeetups() {
+    const list = document.getElementById('modal-meetups-list');
+    list.innerHTML = `
+        <div class="bg-white border border-stone-100 p-5 rounded-2xl flex items-center justify-between shadow-sm">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-stone-100 flex items-center justify-center text-primary font-bold">JD</div>
+                <div>
+                    <p class="text-sm font-bold text-stone-800">James D. <span class="text-[10px] font-normal text-stone-400 uppercase tracking-widest ml-2">• Networking</span></p>
+                    <p class="text-xs text-stone-500">Proposed for 9:30 PM</p>
+                </div>
+            </div>
+            <button class="bg-primary/5 text-primary text-[10px] font-bold px-4 py-2 rounded-lg uppercase">Join</button>
+        </div>
+    `;
 }
-</script></body></html>
+
+function resetFilters() {
+    selectedMood = null;
+    selectedBudget = null;
+    document.querySelectorAll('.mood-btn, .budget-btn').forEach(b => b.classList.remove('chip-active'));
+    document.getElementById('neighborhood-select').value = 'All Neighborhoods';
+    document.getElementById('results-area').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function getLocation() {
+    alert('Simulating location detection... Setting neighborhood to West Village.');
+    document.getElementById('neighborhood-select').value = 'West Village';
+}
+
+function showView(view) {
+    if(view === 'home') {
+        document.getElementById('results-area').classList.add('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+</script>
+</body></html>
