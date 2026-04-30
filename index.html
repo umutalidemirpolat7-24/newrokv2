@@ -1,5 +1,6 @@
-<html class="scroll-smooth" lang="en"><head></head><body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">```html
+<!DOCTYPE html>
 
+<html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>The NYC Concierge | Tower Edition</title>
@@ -103,7 +104,17 @@
         .chat-slide-over.active {
             transform: translateX(0);
         }
+        .mood-btn.active, .budget-btn.active {
+            border-color: #4d0610;
+            background-color: #4d0610;
+            color: white;
+        }
+        .mood-btn.active span, .budget-btn.active span {
+            color: white;
+        }
     </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
 <!-- Navigation -->
 <nav class="fixed top-0 w-full z-[60] bg-[#FCF9F5]/95 backdrop-blur-md border-b border-stone-200">
 <div class="flex justify-between items-center h-20 px-6 md:px-10 max-w-7xl mx-auto">
@@ -133,7 +144,7 @@
 <section class="relative h-[65vh] md:h-[800px] flex items-center justify-center overflow-hidden">
 <div class="absolute inset-0 z-0">
 <div class="absolute inset-0 bg-black/50 z-10"></div>
-<img alt="NYC Skyline" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWcLj67CkPfZnJAr0hfwlGBCOw3k-QMdJy6YQqL_AG8VLPiCLtj1QVXhJs14K7LWTtNEzkf22HovvE3Oh9eZhjVF_jUyCZVZCljodL4b37AEAuqujmfbvkpKbdDdYpKzJ1XfECXpFD7CVFxbFG8yyf3JwY-AXT1-crVmh-VFsE2qKJ7memeuEDR_qvvwXp2BRCQz14bA0xmJlsBBYdtrQzjtk9WjhKEsjGgScKLm_JV-JaG3WfIy8ohZeXcBCqStpCHBNUuUZ7nKI"/>
+<img alt="NYC Skyline" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4mDT80oUPODUfeNlRW0eo38924y-uzWptr7kwCDcuMhrCAtmFScxUD23a4oC2TAh3xXFvbVmfnK5IzQWrY3eQ2ytOVQ_UiMmet5VuY-uHgcvz8SvlQb1Zff41wbeiS9eIeRnlXZBAaGIJDRFtG5DD2lgnN6B_BzoS4w7-1-_mReEiglgGDdUJKOU63srZ7Crj9jI6pU4QEVFBP-uf0KdFPsovjyM_z-Xv4HiARnjlrq8B8Y-x9gitDCV5kG6ugMQzXMf_e44MHbo"/>
 </div>
 <div class="relative z-20 text-center px-6 max-w-4xl mx-auto">
 <span class="font-label-caps text-label-caps text-white/90 mb-4 block uppercase tracking-widest">Urban Discovery Tool</span>
@@ -471,57 +482,260 @@
 <script>
 // Saturated Venue Database
 const venueDatabase = [
-    // West Village
     { id: 1, name: "Via Carota", neighborhood: "West Village", budget: "Premium $160+", moods: ["Romantic", "Culture Focused"], type: "Italian Restaurant", why: "Iconic West Village dinner spot for a polished, romantic NYC date.", dateIdea: "Book a late dinner, share plates, then walk through the quiet cobblestone streets.", checkedIn: 48, meetups: 3, img: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=800" },
     { id: 2, name: "Buvette", neighborhood: "West Village", budget: "Mid $40–$90", moods: ["Romantic", "Calm", "Coffee & Dessert"], type: "French Cafe", why: "Cozy, intimate and perfect for a soft first date or brunch.", dateIdea: "Meet for mid-day coffee and tartines; walk the side streets after.", checkedIn: 32, meetups: 1, img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=800" },
-    { id: 13, name: "Sip & Guzzle", neighborhood: "West Village", budget: "Mid $40–$90", moods: ["Fun", "Spontaneous"], type: "Cocktail Bar", why: "Vibrant dual-concept bar from the world-renowned SG Club team.", dateIdea: "Start with Guzzle for high-energy drinks, finish at Sip for refined mixology.", checkedIn: 22, meetups: 2, img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" },
-    { id: 14, name: "Molly's Cupcakes", neighborhood: "West Village", budget: "Budget Under $40", moods: ["Coffee & Dessert", "Fun"], type: "Bakery", why: "Nostalgic swing seats and center-filled cupcakes.", dateIdea: "Grab cupcakes and sit on the swings for a playful dessert break.", checkedIn: 76, meetups: 1, img: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&q=80&w=800" },
-    { id: 15, name: "Pier 45", neighborhood: "West Village", budget: "Budget Under $40", moods: ["Scenic", "Calm", "Budget Friendly"], type: "Park", why: "The sprawling green lawn extending into the Hudson River.", dateIdea: "Pack a picnic at sunset and watch the boats go by.", checkedIn: 145, meetups: 5, img: "https://images.unsplash.com/photo-1473269712320-f24ce5aa6e5d?auto=format&fit=crop&q=80&w=800" },
-    { id: 16, name: "Dante", neighborhood: "West Village", budget: "Mid $40–$90", moods: ["Romantic", "Culture Focused"], type: "Cocktail Bar", why: "Voted world's best bar, famous for its Negroni sessions.", dateIdea: "Sip martinis during the Martini Hour while people-watching.", checkedIn: 92, meetups: 4, img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=800" },
-    { id: 17, name: "Don Angie", neighborhood: "West Village", budget: "Premium $160+", moods: ["Romantic", "Fun"], type: "Italian Restaurant", why: "Modern Italian with show-stopping dishes like the pinwheel lasagna.", dateIdea: "The ultimate power-move reservation for a food-loving partner.", checkedIn: 34, meetups: 0, img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=800" },
-    { id: 18, name: "Employees Only", neighborhood: "West Village", budget: "High $90–$160", moods: ["Fun", "Spontaneous"], type: "Speakeasy", why: "The original pioneer of the modern speakeasy movement.", dateIdea: "Late night drinks followed by psychic readings at the front desk.", checkedIn: 112, meetups: 6, img: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80&w=800" },
-
-    // SoHo
     { id: 3, name: "Balthazar", neighborhood: "SoHo", budget: "High $90–$160", moods: ["Romantic", "Culture Focused", "Fun"], type: "French Brasserie", why: "Classic SoHo brasserie energy with a bustling, timeless atmosphere.", dateIdea: "Brunch before a day of gallery hopping in lower Manhattan.", checkedIn: 65, meetups: 4, img: "https://images.unsplash.com/photo-1550966841-3ee3ad3aa909?auto=format&fit=crop&q=80&w=800" },
-    { id: 12, name: "Dominique Ansel Bakery", neighborhood: "SoHo", budget: "Budget Under $40", moods: ["Coffee & Dessert", "Spontaneous"], type: "Bakery", why: "Home of the Cronut and other whimsical, world-class pastries.", dateIdea: "Early morning pastry run followed by a SoHo shopping crawl.", checkedIn: 95, meetups: 2, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800" },
-    { id: 19, name: "Lure Fishbar", neighborhood: "SoHo", budget: "High $90–$160", moods: ["Fun", "Scenic"], type: "Seafood", why: "Chic subterranean spot designed like a luxury yacht.", dateIdea: "Order the sushi and burgers for a high-end surf and turf night.", checkedIn: 58, meetups: 1, img: "https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&q=80&w=800" },
-    { id: 20, name: "Sadelle's", neighborhood: "SoHo", budget: "Mid $40–$90", moods: ["Fun", "Culture Focused"], type: "Jewish Deli/Bakery", why: "The ultimate NYC bagel tower experience in a glitzy setting.", dateIdea: "A legendary weekend brunch that requires booking weeks ahead.", checkedIn: 87, meetups: 3, img: "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&q=80&w=800" },
-    { id: 21, name: "Fanelli's Cafe", neighborhood: "SoHo", budget: "Budget Under $40", moods: ["Spontaneous", "Culture Focused"], type: "Historic Tavern", why: "One of NYC's oldest bars, preserving the grit of old SoHo.", dateIdea: "A casual afternoon beer and a burger to rest after shopping.", checkedIn: 134, meetups: 5, img: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=800" },
-    { id: 22, name: "Raoul's", neighborhood: "SoHo", budget: "High $90–$160", moods: ["Romantic", "Culture Focused"], type: "French Bistro", why: "Beloved local institution known for its Steak Au Poivre.", dateIdea: "Sit at the bar and try to snag one of their limited nightly burgers.", checkedIn: 42, meetups: 0, img: "https://images.unsplash.com/photo-1551632432-c735eef10bc1?auto=format&fit=crop&q=80&w=800" },
-    { id: 23, name: "Felix Roast", neighborhood: "SoHo", budget: "Mid $40–$90", moods: ["Scenic", "Fun"], type: "French Bistro", why: "Open-air dining that captures the quintessential SoHo vibe.", dateIdea: "Sunday afternoon cocktails while watching the SoHo crowds.", checkedIn: 66, meetups: 2, img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800" },
-
-    // Chelsea
-    { id: 7, name: "High Line", neighborhood: "Chelsea", budget: "Budget Under $40", moods: ["Scenic", "Calm", "Budget Friendly"], type: "Outdoor Walk", why: "An elevated park with modern art and stunning river views.", dateIdea: "Afternoon walk followed by snacks at Chelsea Market.", checkedIn: 210, meetups: 8, img: "https://images.unsplash.com/photo-1473269712320-f24ce5aa6e5d?auto=format&fit=crop&q=80&w=800" },
-    { id: 24, name: "Cookshop", neighborhood: "Chelsea", budget: "Mid $40–$90", moods: ["Calm", "Culture Focused"], type: "American", why: "Sustainable, farm-to-table dining right by the High Line.", dateIdea: "A wholesome brunch before exploring the Chelsea galleries.", checkedIn: 45, meetups: 2, img: "https://images.unsplash.com/photo-1502301103665-0b95cc738def?auto=format&fit=crop&q=80&w=800" },
-    { id: 25, name: "Bar Snack", neighborhood: "Chelsea", budget: "Mid $40–$90", moods: ["Fun", "Spontaneous"], type: "Bar", why: "High-energy spot perfect for group hangouts and pre-party drinks.", dateIdea: "Share small plates and round of shots with a large group.", checkedIn: 38, meetups: 1, img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" },
-    { id: 26, name: "RH Rooftop", neighborhood: "Chelsea", budget: "High $90–$160", moods: ["Scenic", "Romantic"], type: "Restaurant", why: "Stunning glass-encased rooftop with crystal chandeliers.", dateIdea: "Sunset dinner surrounded by high-end design and city views.", checkedIn: 72, meetups: 3, img: "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&q=80&w=800" },
-    { id: 27, name: "Whitney Museum", neighborhood: "Chelsea", budget: "Budget Under $40", moods: ["Culture Focused", "Scenic"], type: "Museum", why: "Premier modern American art museum with terraces over the city.", dateIdea: "Explore the art then head to the outdoor terrace for pictures.", checkedIn: 189, meetups: 12, img: "https://images.unsplash.com/photo-1518998053502-5190a3915a25?auto=format&fit=crop&q=80&w=800" },
-    { id: 28, name: "Buddakan", neighborhood: "Chelsea", budget: "High $90–$160", moods: ["Fun", "Romantic"], type: "Asian Fusion", why: "Massive, theatrical space famously featured in Sex and the City.", dateIdea: "The perfect spot for a dressed-up, cinematic group dinner.", checkedIn: 124, meetups: 5, img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800" },
-    { id: 29, name: "Gallow Green", neighborhood: "Chelsea", budget: "Mid $40–$90", moods: ["Scenic", "Fun"], type: "Rooftop Bar", why: "A lush, overgrown garden atop the McKittrick Hotel.", dateIdea: "Cocktails in a secret-garden atmosphere before a show.", checkedIn: 88, meetups: 4, img: "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&q=80&w=800" },
-
-    // Williamsburg
     { id: 4, name: "Lilia", neighborhood: "Williamsburg", budget: "High $90–$160", moods: ["Romantic", "Culture Focused"], type: "Italian Restaurant", why: "Acclaimed pasta destination in the heart of Williamsburg.", dateIdea: "Secure a difficult reservation for an anniversary or high-impact date.", checkedIn: 54, meetups: 2, img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=800" },
-    { id: 30, name: "L'Industrie", neighborhood: "Williamsburg", budget: "Budget Under $40", moods: ["Budget Friendly", "Spontaneous"], type: "Pizza", why: "Widely considered the best sourdough pizza in New York.", dateIdea: "Grab a slice and sit on a bench for the best casual lunch.", checkedIn: 167, meetups: 3, img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=800" },
-    { id: 31, name: "Bar Blondeau", neighborhood: "Williamsburg", budget: "Mid $40–$90", moods: ["Scenic", "Romantic"], type: "Rooftop Lounge", why: "Elegant French-style seafood bar with skyline views.", dateIdea: "Sunset cocktails with a view of the Empire State Building.", checkedIn: 41, meetups: 1, img: "https://images.unsplash.com/photo-1522336572468-97b06e8ef143?auto=format&fit=crop&q=80&w=800" },
-    { id: 32, name: "Kellogg's Diner", neighborhood: "Williamsburg", budget: "Budget Under $40", moods: ["Fun", "Spontaneous"], type: "Diner", why: "Iconic 24/7 diner that has served the neighborhood for decades.", dateIdea: "The mandatory 3 AM stop after a long night of dancing.", checkedIn: 99, meetups: 0, img: "https://images.unsplash.com/photo-1498654077810-12c21d4d6dc3?auto=format&fit=crop&q=80&w=800" },
-    { id: 33, name: "Brooklyn Bowl", neighborhood: "Williamsburg", budget: "Mid $40–$90", moods: ["Fun", "Culture Focused"], type: "Bowling & Music", why: "A unique mix of high-tech bowling, great food, and live music.", dateIdea: "Book a lane during a live show for a multi-sensory date.", checkedIn: 132, meetups: 7, img: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800" },
-    { id: 34, name: "Bernie's", neighborhood: "Williamsburg", budget: "Mid $40–$90", moods: ["Fun", "Budget Friendly"], type: "American", why: "Nostalgic Americana vibes with incredible ribs and wedge salads.", dateIdea: "A fun, low-key dinner with a classic red-checkered tablecloth feel.", checkedIn: 55, meetups: 2, img: "https://images.unsplash.com/photo-1546241072-48010ad28c2c?auto=format&fit=crop&q=80&w=800" },
-    { id: 35, name: "Westlight", neighborhood: "Williamsburg", budget: "High $90–$160", moods: ["Scenic", "Fun"], type: "Rooftop Bar", why: "360-degree views from the 22nd floor of the William Vale.", dateIdea: "Impress a visitor or date with the best view of all five boroughs.", checkedIn: 148, meetups: 6, img: "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&q=80&w=800" },
-    { id: 36, name: "Radegast Hall", neighborhood: "Williamsburg", budget: "Budget Under $40", moods: ["Fun", "Spontaneous"], type: "Beer Garden", why: "Massive Austro-Hungarian beer hall with live brass bands.", dateIdea: "Grab a bratwurst and a liter of beer for a high-energy group vibe.", checkedIn: 215, meetups: 10, img: "https://images.unsplash.com/photo-1538488881038-e252a119ace7?auto=format&fit=crop&q=80&w=800" },
-
-    // DUMBO
-    { id: 8, name: "The River Café", neighborhood: "DUMBO", budget: "Premium $160+", moods: ["Romantic", "Scenic"], type: "Fine Dining", why: "Legendary waterfront spot with the most iconic view of Manhattan.", dateIdea: "The ultimate proposal or high-stakes anniversary dinner.", checkedIn: 18, meetups: 0, img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800" },
-    { id: 37, name: "Time Out Market", neighborhood: "DUMBO", budget: "Mid $40–$90", moods: ["Scenic", "Fun", "Budget Friendly"], type: "Food Hall", why: "Curated selection of NYC's best chefs under one roof.", dateIdea: "Grab food from different stalls and head to the rooftop for the view.", checkedIn: 245, meetups: 15, img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800" },
-    { id: 38, name: "Juliana's", neighborhood: "DUMBO", budget: "Mid $40–$90", moods: ["Fun", "Culture Focused"], type: "Pizza", why: "Coal-fired pizza from the legendary Patsy Grimaldi.", dateIdea: "Avoid the Grimaldi's line and eat here for a superior, local experience.", checkedIn: 112, meetups: 4, img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=800" },
-    { id: 39, name: "Brooklyn Bridge Park", neighborhood: "DUMBO", budget: "Budget Under $40", moods: ["Scenic", "Calm", "Budget Friendly"], type: "Park", why: "Waterfront piers with the best view of the Brooklyn Bridge.", dateIdea: "Walk the piers at sunset, maybe grab an ice cream from the creamery.", checkedIn: 340, meetups: 20, img: "https://images.unsplash.com/photo-1473269712320-f24ce5aa6e5d?auto=format&fit=crop&q=80&w=800" },
-    { id: 40, name: "Jacques Torres", neighborhood: "DUMBO", budget: "Budget Under $40", moods: ["Coffee & Dessert", "Romantic"], type: "Chocolatier", why: "The world-famous 'Mr. Chocolate' factory and shop.", dateIdea: "Warm up with their legendary thick hot chocolate in the winter.", checkedIn: 88, meetups: 2, img: "https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=800" },
-    { id: 41, name: "Cecconi's", neighborhood: "DUMBO", budget: "High $90–$160", moods: ["Romantic", "Scenic"], type: "Italian", why: "Upscale Italian with front-row seats to the Manhattan skyline.", dateIdea: "Dress to impress for a glamorous sunset dinner on the patio.", checkedIn: 94, meetups: 3, img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=800" },
-    { id: 42, name: "Celestine", neighborhood: "DUMBO", budget: "High $90–$160", moods: ["Scenic", "Calm"], type: "Mediterranean", why: "Modern spot tucked under the Manhattan Bridge with floor-to-ceiling glass.", dateIdea: "An intimate dinner for two with the bridge as your backdrop.", checkedIn: 36, meetups: 1, img: "https://images.unsplash.com/photo-1502301103665-0b95cc738def?auto=format&fit=crop&q=80&w=800" },
-
-    // Lower Manhattan
-    { id: 6, name: "The Dead Rabbit", neighborhood: "Lower Manhattan", budget: "Mid $40–$90", moods: ["Fun", "Spontaneous"], type: "Cocktail Bar", why: "World-class cocktails in a historic, multi-story tavern setting.", dateIdea: "Cocktails in the parlor before finding a late-night bite downtown.", checkedIn: 88, meetups: 6, img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" },
     { id: 5, name: "Manhatta", neighborhood: "Lower Manhattan", budget: "Premium $160+", moods: ["Romantic", "Scenic"], type: "Fine Dining", why: "60th-floor views offering a breathtaking panoramic look at the city.", dateIdea: "Sunset cocktails followed by a multi-course tasting menu.", checkedIn: 29, meetups: 1, img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800" },
-    { id: 43, name: "Crown Shy", neighborhood: "Lower Manhattan", budget: "High $90–$160", moods: ["Romantic", "Culture Focused"], type: "Modern American", why: "Michelin-starred dining in an Art Deco masterpiece building.", dateIdea: "A sophisticated dinner for people who take food and architecture seriously.", checkedIn: 47, meetups: 2, img: "https://images.unsplash.com/photo-1551632432-c735eef10bc1?auto=format&fit=crop&q=80&w=800" },
-    { id: 44, name: "Stone Street", neighborhood: "Lower Manhattan", budget: "Budget Under $40", moods: ["Fun", "Spontaneous", "Budget Friendly"], type: "Historic Alley", why: "One of the few cobblestone streets where outdoor drinking is legal.", dateIdea: "A summer evening drinking beers outside with the financial district crowd.", checkedIn: 188, meetups: 9, img: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=800" },
-    { id: 45, name: "Pier 17", neighborhood: "Lower Manhattan", budget: "Mid $40–$90", moods: ["Scenic", "Fun"], type: "Entertainment", why: "Rooftop concert venue and dining hub at the Seaport.", dateIdea: "Catch an outdoor concert with the Brooklyn Bridge right behind the stage.", checkedIn: 122, meetups: 5, img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800" },
-    { id: 46, name: "Fraunces Tavern", neighborhood: "Lower Manhattan", budget: "Mid $40–$90", moods: ["Culture Focused", "Calm"], type: "Historic Bar", why: "Where George Washington said farewell to his troops.", dateIdea: "A history-rich pint in one of the city's oldest buildings.", checkedIn: 64, meetups: 3, img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop</script></body></html>
+    { id: 6, name: "The Dead Rabbit", neighborhood: "Lower Manhattan", budget: "Mid $40–$90", moods: ["Fun", "Spontaneous"], type: "Cocktail Bar", why: "World-class cocktails in a historic, multi-story tavern setting.", dateIdea: "Cocktails in the parlor before finding a late-night bite downtown.", checkedIn: 88, meetups: 6, img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" },
+    { id: 7, name: "High Line", neighborhood: "Chelsea", budget: "Budget Under $40", moods: ["Scenic", "Calm", "Budget Friendly"], type: "Outdoor Walk", why: "An elevated park with modern art and stunning river views.", dateIdea: "Afternoon walk followed by snacks at Chelsea Market.", checkedIn: 210, meetups: 8, img: "https://images.unsplash.com/photo-1473269712320-f24ce5aa6e5d?auto=format&fit=crop&q=80&w=800" },
+    { id: 8, name: "Raoul's", neighborhood: "SoHo", budget: "High $90–$160", moods: ["Romantic", "Culture Focused"], type: "French Bistro", why: "Beloved local institution known for its Steak Au Poivre.", dateIdea: "Sit at the bar and try to snag one of their limited nightly burgers.", checkedIn: 42, meetups: 0, img: "https://images.unsplash.com/photo-1551632432-c735eef10bc1?auto=format&fit=crop&q=80&w=800" },
+    { id: 9, name: "Dante", neighborhood: "West Village", budget: "Mid $40–$90", moods: ["Romantic", "Culture Focused"], type: "Cocktail Bar", why: "Voted world's best bar, famous for its Negroni sessions.", dateIdea: "Sip martinis during the Martini Hour while people-watching.", checkedIn: 92, meetups: 4, img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=800" },
+    { id: 10, name: "Dominique Ansel", neighborhood: "SoHo", budget: "Budget Under $40", moods: ["Coffee & Dessert", "Spontaneous"], type: "Bakery", why: "Home of the Cronut and other whimsical, world-class pastries.", dateIdea: "Early morning pastry run followed by a SoHo shopping crawl.", checkedIn: 95, meetups: 2, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800" }
+];
+
+// App State
+let selectedMood = null;
+let selectedBudget = null;
+let selectedNeighborhood = "All Neighborhoods";
+let currentViewedVenue = null;
+
+// Interaction Initializers
+document.querySelectorAll('.mood-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active', 'ring-4', 'ring-primary/20'));
+        btn.classList.add('active', 'ring-4', 'ring-primary/20');
+        selectedMood = btn.dataset.mood;
+    });
+});
+
+document.querySelectorAll('.budget-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.budget-btn').forEach(b => b.classList.remove('active', 'bg-primary', 'text-white'));
+        btn.classList.add('active', 'bg-primary', 'text-white');
+        selectedBudget = btn.dataset.budget;
+    });
+});
+
+document.getElementById('neighborhood-select').addEventListener('change', (e) => {
+    selectedNeighborhood = e.target.value;
+});
+
+// Logic Functions
+function buildPlan() {
+    if (!selectedMood) {
+        alert("Please select a mood first!");
+        return;
+    }
+
+    const resultsArea = document.getElementById('results-area');
+    const resultsGrid = document.getElementById('results-grid');
+    resultsGrid.innerHTML = ''; // Clear current
+
+    // Filtering logic (Strict neighborhood matching as requested)
+    const matches = venueDatabase.filter(v => {
+        const moodMatch = v.moods.includes(selectedMood);
+        const budgetMatch = !selectedBudget || v.budget === selectedBudget;
+        const neighborhoodMatch = selectedNeighborhood === "All Neighborhoods" || v.neighborhood === selectedNeighborhood;
+        
+        return moodMatch && budgetMatch && neighborhoodMatch;
+    });
+
+    if (matches.length === 0) {
+        resultsGrid.innerHTML = `
+            <div class="col-span-full py-20 text-center">
+                <span class="material-symbols-outlined text-6xl text-stone-300 mb-4">search_off</span>
+                <p class="text-stone-500 font-body-lg">No exact matches in ${selectedNeighborhood}. Try broadening your search!</p>
+            </div>
+        `;
+    } else {
+        matches.forEach((venue, index) => {
+            const card = document.createElement('div');
+            card.className = "venue-card-reveal bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200 group hover:shadow-xl transition-all";
+            card.style.animationDelay = `${index * 0.1}s`;
+            card.innerHTML = `
+                <div class="relative h-64 overflow-hidden">
+                    <img src="${venue.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="${venue.name}">
+                    <div class="absolute top-4 left-4 flex gap-2">
+                        <span class="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-primary uppercase">${venue.neighborhood}</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-h3 text-xl text-primary">${venue.name}</h4>
+                        <span class="text-xs font-bold text-stone-400">${venue.budget.split(' ')[0]}</span>
+                    </div>
+                    <p class="text-stone-500 text-sm mb-6 line-clamp-2">${venue.why}</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-stone-200 border-2 border-white flex items-center justify-center text-[10px] font-bold">+${venue.checkedIn}</div>
+                        </div>
+                        <button onclick="openVenueDetails(${venue.id})" class="text-primary font-button text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                            View Details <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            resultsGrid.appendChild(card);
+        });
+    }
+
+    resultsArea.classList.remove('hidden');
+    resultsArea.scrollIntoView({ behavior: 'smooth' });
+}
+
+function openVenueDetails(id) {
+    const venue = venueDatabase.find(v => v.id === id);
+    if (!venue) return;
+    currentViewedVenue = venue;
+
+    const modal = document.getElementById('details-modal');
+    const content = document.getElementById('modal-content');
+    
+    document.getElementById('modal-image').src = venue.img;
+    document.getElementById('modal-name').innerText = venue.name;
+    document.getElementById('modal-district').innerText = venue.type;
+    document.getElementById('modal-neighborhood-tag').innerText = venue.neighborhood;
+    document.getElementById('modal-budget-label').innerText = venue.budget;
+    document.getElementById('modal-checked-count').innerText = venue.checkedIn;
+    
+    const moodContainer = document.getElementById('modal-mood-tags');
+    moodContainer.innerHTML = venue.moods.map(m => `<span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">${m}</span>`).join('');
+
+    const conciergePanel = document.getElementById('concierge-panel');
+    conciergePanel.innerHTML = `
+        <h5 class="text-primary font-bold text-sm uppercase tracking-widest mb-2 flex items-center gap-2">
+            <span class="material-symbols-outlined text-base">magic_button</span> Concierge Tip
+        </h5>
+        <p class="text-stone-600 text-sm italic">"${venue.dateIdea}"</p>
+    `;
+
+    modal.classList.remove('hidden');
+    setTimeout(() => content.classList.remove('translate-x-full'), 10);
+    populateMeetups(venue.id);
+}
+
+function closeModal() {
+    const content = document.getElementById('modal-content');
+    content.classList.add('translate-x-full');
+    setTimeout(() => {
+        document.getElementById('details-modal').classList.add('hidden');
+    }, 500);
+}
+
+function handleCheckIn() {
+    if (!currentViewedVenue) return;
+    alert(`Success! You've checked into ${currentViewedVenue.name}. You can now see others here.`);
+    // In a real app, this would update state and show profiles
+}
+
+function toggleMeetupForm() {
+    document.getElementById('create-meetup-form').classList.toggle('hidden');
+}
+
+function submitNewMeetup() {
+    const name = document.getElementById('meetup-name').value;
+    if (!name) { alert("Please enter your name"); return; }
+    alert("Proposal posted! Check your 'Chats' panel for responses.");
+    toggleMeetupForm();
+}
+
+function toggleChatPanel() {
+    const container = document.getElementById('chat-panel-container');
+    const panel = container.querySelector('.chat-slide-over');
+    if (container.classList.contains('hidden')) {
+        container.classList.remove('hidden');
+        setTimeout(() => panel.classList.add('active'), 10);
+    } else {
+        panel.classList.remove('active');
+        setTimeout(() => container.classList.add('hidden'), 400);
+    }
+}
+
+function switchMainMode(mode) {
+    const modes = ['date', 'party', 'host'];
+    modes.forEach(m => {
+        const btn = document.getElementById(`mode-${m}`);
+        btn.classList.remove('mode-active', 'text-stone-500');
+        if (m === mode) btn.classList.add('mode-active');
+        else btn.classList.add('text-stone-500');
+    });
+
+    document.getElementById('planner-form-container').classList.add('hidden');
+    document.getElementById('party-radar-info').classList.add('hidden');
+    document.getElementById('host-form-container').classList.add('hidden');
+
+    if (mode === 'date') document.getElementById('planner-form-container').classList.remove('hidden');
+    if (mode === 'party') {
+        document.getElementById('party-radar-info').classList.remove('hidden');
+        scanRadar();
+    }
+    if (mode === 'host') document.getElementById('host-form-container').classList.remove('hidden');
+}
+
+function scanRadar() {
+    const grid = document.getElementById('party-radar-grid');
+    grid.innerHTML = '<div class="col-span-full py-10 text-center"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div></div>';
+    
+    setTimeout(() => {
+        const events = [
+            { name: "Sashimi & Sake Night", loc: "East Village", time: "Starts 9PM", icon: "dining" },
+            { name: "Skyline Rooftop Mix", loc: "Williamsburg", time: "Live Now", icon: "nightlife" }
+        ];
+        grid.innerHTML = events.map(e => `
+            <div class="bg-surface-container p-6 rounded-2xl border border-stone-100 flex gap-4 items-start pulse-match">
+                <div class="w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center">
+                    <span class="material-symbols-outlined">${e.icon}</span>
+                </div>
+                <div>
+                    <h4 class="font-bold text-primary">${e.name}</h4>
+                    <p class="text-xs text-stone-500 mb-1">${e.loc}</p>
+                    <span class="text-[10px] font-bold uppercase tracking-tighter text-emerald-600">${e.time}</span>
+                </div>
+            </div>
+        `).join('');
+    }, 1000);
+}
+
+function populateMeetups(venueId) {
+    const list = document.getElementById('modal-meetups-list');
+    list.innerHTML = `
+        <div class="flex items-center gap-4 p-4 bg-stone-50 rounded-2xl border border-stone-100">
+            <div class="w-10 h-10 rounded-full bg-stone-300"></div>
+            <div class="flex-1">
+                <p class="text-sm font-bold">Alex M. <span class="text-[10px] text-stone-400 font-normal ml-2">9:30 PM</span></p>
+                <p class="text-xs text-stone-500">Proposed: Late night drinks & jazz</p>
+            </div>
+            <button class="bg-primary-container text-white px-4 py-2 rounded-lg text-xs font-button" onclick="alert('Join request sent!')">Join</button>
+        </div>
+    `;
+}
+
+function hostVibe() {
+    const name = document.getElementById('host-name').value;
+    if (!name) { alert("Please name your vibe!"); return; }
+    alert("Your vibe is now on the NYC Radar! Good luck with your hosting.");
+}
+
+function resetFilters() {
+    selectedMood = null;
+    selectedBudget = null;
+    selectedNeighborhood = "All Neighborhoods";
+    document.getElementById('neighborhood-select').value = "All Neighborhoods";
+    document.querySelectorAll('.mood-btn, .budget-btn').forEach(b => b.classList.remove('active', 'ring-4', 'ring-primary/20', 'bg-primary', 'text-white'));
+    document.getElementById('results-area').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function getLocation() {
+    alert("Simulating location detection... Neighborhood set to West Village.");
+    document.getElementById('neighborhood-select').value = "West Village";
+    selectedNeighborhood = "West Village";
+}
+
+function showView(view) {
+    // Basic view switching logic if needed
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body></html>
