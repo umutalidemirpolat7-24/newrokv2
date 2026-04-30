@@ -1,4 +1,5 @@
-<html class="scroll-smooth" lang="en"><head>
+<html class="scroll-smooth" lang="en"><head></head><body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">```html
+
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>The NYC Concierge | Tower Edition</title>
@@ -103,8 +104,6 @@
             transform: translateX(0);
         }
     </style>
-</head>
-<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
 <!-- Navigation -->
 <nav class="fixed top-0 w-full z-[60] bg-[#FCF9F5]/95 backdrop-blur-md border-b border-stone-200">
 <div class="flex justify-between items-center h-20 px-6 md:px-10 max-w-7xl mx-auto">
@@ -466,7 +465,7 @@
 </div>
 </div>
 <script>
-// Comprehensive Venue Database
+// Comprehensive Venue Database (Expanded & Validated)
 const venueDatabase = [
     { id: 1, name: "Via Carota", neighborhood: "West Village", budget: "Premium $160+", moods: ["Romantic", "Culture Focused"], type: "Italian Restaurant", why: "Iconic West Village dinner spot for a polished, romantic NYC date.", dateIdea: "Book a late dinner, share plates, then walk through the quiet cobblestone streets.", checkedIn: 48, meetups: 3, img: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=800" },
     { id: 2, name: "Buvette", neighborhood: "West Village", budget: "Mid $40–$90", moods: ["Romantic", "Calm", "Coffee & Dessert"], type: "French Cafe", why: "Cozy, intimate and perfect for a soft first date or brunch.", dateIdea: "Meet for mid-day coffee and tartines; walk the side streets after.", checkedIn: 32, meetups: 1, img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=800" },
@@ -480,6 +479,15 @@ const venueDatabase = [
     { id: 10, name: "Levain Bakery", neighborhood: "Upper West Side", budget: "Budget Under $40", moods: ["Coffee & Dessert", "Budget Friendly"], type: "Bakery", why: "NYC's most famous thick cookies, perfect for a casual sweet treat.", dateIdea: "Grab cookies and coffee for a stroll through Central Park.", checkedIn: 120, meetups: 1, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800" },
     { id: 11, name: "Summit One Vanderbilt", neighborhood: "Midtown", budget: "High $90–$160", moods: ["Scenic", "Fun", "Spontaneous"], type: "Observation Deck", why: "Immersive mirrored art installations and epic Midtown views.", dateIdea: "Explore the glass rooms at dusk for the best light effects.", checkedIn: 154, meetups: 5, img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&q=80&w=800" },
     { id: 12, name: "Dominique Ansel Bakery", neighborhood: "SoHo", budget: "Budget Under $40", moods: ["Coffee & Dessert", "Spontaneous"], type: "Bakery", why: "Home of the Cronut and other whimsical, world-class pastries.", dateIdea: "Early morning pastry run followed by a SoHo shopping crawl.", checkedIn: 95, meetups: 2, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800" },
+    { id: 13, name: "The Polo Bar", neighborhood: "Midtown", budget: "Premium $160+", moods: ["Romantic", "Culture Focused"], type: "American Restaurant", why: "Ralph Lauren’s prestigious dining room offering a peak 'Old New York' vibe.", dateIdea: "Don your finest attire for a classic burger and martinis in the wood-paneled room.", checkedIn: 42, meetups: 1, img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800" },
+    { id: 14, name: "Raoul's", neighborhood: "SoHo", budget: "High $90–$160", moods: ["Fun", "Romantic"], type: "French Bistro", why: "A legendary SoHo staple known for its steak au poivre and electric atmosphere.", dateIdea: "Sit at the bar for a spontaneous steak frites dinner.", checkedIn: 76, meetups: 3, img: "https://images.unsplash.com/photo-1550966841-3ee3ad3aa909?auto=format&fit=crop&q=80&w=800" },
+    { id: 15, name: "Bernie's", neighborhood: "Williamsburg", budget: "Mid $40–$90", moods: ["Fun", "Budget Friendly"], type: "American Bistro", why: "Nostalgic comfort food in Brooklyn. Famous for ribs and wedge salads.", dateIdea: "Casual dinner followed by bowling at The Gutter nearby.", checkedIn: 88, meetups: 5, img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=800" },
+    { id: 16, name: "Zou Zou's", neighborhood: "Chelsea", budget: "High $90–$160", moods: ["Fun", "Scenic"], type: "Eastern Mediterranean", why: "Lively, stylish dining in Manhattan West with exceptional dips.", dateIdea: "A group dinner before catching a game at MSG.", checkedIn: 55, meetups: 4, img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=800" },
+    { id: 17, name: "Jacob's Pickles", neighborhood: "Upper West Side", budget: "Mid $40–$90", moods: ["Fun", "Budget Friendly"], type: "Southern Comfort", why: "Hearty biscuits and craft beer. A staple of the UWS social scene.", dateIdea: "Massive brunch followed by a museum visit.", checkedIn: 110, meetups: 6, img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=800" },
+    { id: 18, name: "Café Sabarsky", neighborhood: "Upper East Side", budget: "High $90–$160", moods: ["Culture Focused", "Calm", "Coffee & Dessert"], type: "Viennese Café", why: "Located in the Neue Galerie, it's like stepping into early 20th-century Vienna.", dateIdea: "View the Klimts then discuss over Sacher torte.", checkedIn: 34, meetups: 0, img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=800" },
+    { id: 19, name: "Joe's Pizza", neighborhood: "West Village", budget: "Budget Under $40", moods: ["Spontaneous", "Budget Friendly"], type: "Pizzeria", why: "The quintessential NYC slice. No frills, just history.", dateIdea: "Late night slice after jazz at the Village Vanguard.", checkedIn: 450, meetups: 12, img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=800" },
+    { id: 20, name: "Westlight", neighborhood: "Williamsburg", budget: "High $90–$160", moods: ["Scenic", "Fun"], type: "Rooftop Bar", why: "Panoramic views of the skyline from the top of the William Vale.", dateIdea: "Sunset drinks followed by a stroll on the pier.", checkedIn: 180, meetups: 9, img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" },
+    { id: 21, name: "Katz's Delicatessen", neighborhood: "Lower Manhattan", budget: "Mid $40–$90", moods: ["Culture Focused", "Spontaneous"], type: "Deli", why: "World-famous pastrami. An NYC rite of passage.", dateIdea: "Grab a ticket, a sandwich, and soak in the chaos.", checkedIn: 320, meetups: 15, img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800" }
 ];
 
 let selectedMood = null;
@@ -533,7 +541,7 @@ function switchMainMode(mode) {
 function buildPlan() {
     const neighborhood = document.getElementById('neighborhood-select').value;
     
-    // Core filtering logic
+    // Core filtering logic with fallback layers to ensure data integrity
     let results = venueDatabase.filter(v => {
         const nbMatch = neighborhood === 'All Neighborhoods' || v.neighborhood === neighborhood;
         const moodMatch = !selectedMood || v.moods.includes(selectedMood);
@@ -541,15 +549,46 @@ function buildPlan() {
         return nbMatch && moodMatch && budgetMatch;
     });
 
-    // Fallback: If no strict matches, broaden search but keep neighborhood priority
-    if (results.length === 0) {
+    // Fallback 1: Same Neighborhood + Same Budget (Broaden Mood)
+    if (results.length === 0 && neighborhood !== 'All Neighborhoods') {
         results = venueDatabase.filter(v => 
-            (neighborhood === 'All Neighborhoods' || v.neighborhood === neighborhood) && 
-            (!selectedMood || v.moods.includes(selectedMood))
-        ).slice(0, 3);
+            v.neighborhood === neighborhood && 
+            (!selectedBudget || v.budget === selectedBudget)
+        );
     }
 
-    renderResults(results);
+    // Fallback 2: Same Neighborhood + Same Mood (Broaden Budget)
+    if (results.length === 0 && neighborhood !== 'All Neighborhoods') {
+        results = venueDatabase.filter(v => 
+            v.neighborhood === neighborhood && 
+            (!selectedMood || v.moods.includes(selectedMood))
+        );
+    }
+
+    // Fallback 3: Nearby/Any Neighborhood + Same Mood + Same Budget
+    if (results.length === 0) {
+        results = venueDatabase.filter(v => 
+            (!selectedMood || v.moods.includes(selectedMood)) && 
+            (!selectedBudget || v.budget === selectedBudget)
+        );
+    }
+
+    // Fallback 4: Absolute Catch-all (Closest Mood)
+    if (results.length === 0 && selectedMood) {
+        results = venueDatabase.filter(v => v.moods.includes(selectedMood));
+    }
+
+    // Safety: If somehow still empty, show highly rated classics
+    if (results.length === 0) {
+        results = venueDatabase.slice(0, 5);
+    }
+
+    // Sort to prioritize neighborhood if "All Neighborhoods" wasn't selected
+    if (neighborhood !== 'All Neighborhoods') {
+        results.sort((a, b) => (a.neighborhood === neighborhood ? -1 : 1));
+    }
+
+    renderResults(results.slice(0, 6));
     const resultsArea = document.getElementById('results-area');
     resultsArea.classList.remove('hidden');
     resultsArea.scrollIntoView({ behavior: 'smooth' });
@@ -557,15 +596,7 @@ function buildPlan() {
 
 function renderResults(venues) {
     const grid = document.getElementById('results-grid');
-    if (venues.length === 0) {
-        grid.innerHTML = `
-            <div class="col-span-full py-20 text-center bg-white rounded-3xl border border-dashed border-stone-200">
-                <p class="text-stone-400">No specific matches for that criteria tonight. Try adjusting filters.</p>
-            </div>
-        `;
-        return;
-    }
-
+    
     grid.innerHTML = venues.map(v => `
         <div class="bg-white rounded-3xl shadow-sm border border-outline-variant overflow-hidden venue-card-reveal hover:shadow-2xl transition-all group cursor-pointer" onclick="openModal(${v.id})">
             <div class="relative h-60 overflow-hidden">
@@ -662,7 +693,6 @@ function handleCheckIn() {
     btn.classList.replace('bg-primary', 'bg-emerald-600');
     countEl.innerText = currentCount + 1;
     
-    // Add toast or notification logic if needed
     alert('You are now checked in! Other users can see you are here.');
 }
 
@@ -743,60 +773,4 @@ function scanRadar() {
             <p class="text-sm text-stone-500 leading-relaxed mb-8">${e.desc}</p>
             <div class="flex items-center justify-between">
                 <div class="flex -space-x-2">
-                    <div class="w-8 h-8 rounded-full border-2 border-white bg-stone-200"></div>
-                    <div class="w-8 h-8 rounded-full border-2 border-white bg-stone-300"></div>
-                    <div class="w-8 h-8 rounded-full border-2 border-white bg-stone-400"></div>
-                </div>
-                <button class="bg-primary text-white px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest hover:opacity-90">Request Pass</button>
-            </div>
-        </div>
-    `).join('');
-}
-
-function renderProfiles() {
-    const p = document.getElementById('profile-bubbles');
-    p.innerHTML = Array(6).fill(0).map(() => `
-        <div class="w-12 h-12 rounded-full border-2 border-white shadow-sm flex-shrink-0 overflow-hidden bg-stone-100">
-            <img src="https://i.pravatar.cc/150?u=${Math.random()}" class="w-full h-full object-cover">
-        </div>
-    `).join('') + `<div class="w-12 h-12 rounded-full border-2 border-white bg-stone-100 flex items-center justify-center text-[10px] font-bold text-stone-400 flex-shrink-0">+8</div>`;
-}
-
-function renderMeetups() {
-    const list = document.getElementById('modal-meetups-list');
-    list.innerHTML = `
-        <div class="bg-white border border-stone-100 p-5 rounded-2xl flex items-center justify-between shadow-sm">
-            <div class="flex items-center gap-4">
-                <div class="w-10 h-10 rounded-full bg-stone-100 flex items-center justify-center text-primary font-bold">JD</div>
-                <div>
-                    <p class="text-sm font-bold text-stone-800">James D. <span class="text-[10px] font-normal text-stone-400 uppercase tracking-widest ml-2">• Networking</span></p>
-                    <p class="text-xs text-stone-500">Proposed for 9:30 PM</p>
-                </div>
-            </div>
-            <button class="bg-primary/5 text-primary text-[10px] font-bold px-4 py-2 rounded-lg uppercase">Join</button>
-        </div>
-    `;
-}
-
-function resetFilters() {
-    selectedMood = null;
-    selectedBudget = null;
-    document.querySelectorAll('.mood-btn, .budget-btn').forEach(b => b.classList.remove('chip-active'));
-    document.getElementById('neighborhood-select').value = 'All Neighborhoods';
-    document.getElementById('results-area').classList.add('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function getLocation() {
-    alert('Simulating location detection... Setting neighborhood to West Village.');
-    document.getElementById('neighborhood-select').value = 'West Village';
-}
-
-function showView(view) {
-    if(view === 'home') {
-        document.getElementById('results-area').classList.add('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-}
-</script>
-</body></html>
+                    <div class="w-8 h-8 rounded-full border-2 border-white bg-stone-200"></div></script></body></html>
